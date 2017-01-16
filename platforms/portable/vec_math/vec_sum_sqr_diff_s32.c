@@ -53,6 +53,11 @@ uint64_t vec_sum_sqr_diff_s32(const int32_t *pX, const int32_t *pY, int len,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (28)
+#define CONST(X)  CIMLIB_CONST_S32(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_sqr_diff_s32' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -60,16 +65,19 @@ uint64_t vec_sum_sqr_diff_s32(const int32_t *pX, const int32_t *pY, int len,
 bool test_vec_sum_sqr_diff_s32(void)
 {
     uint64_t z;
-    static int32_t x[4] = {1111111, 2222222, 3333333, 4444444};
-    static int32_t y[4] = {-44444444, -3333333, -22222222, -11111111};
-    static uint64_t res = 2930893032649;
+    static int32_t x[4] = {
+        CONST(2.1), CONST(0.1), CONST(-5.6), CONST(3.14)
+    };
+    static int32_t y[4] = {
+        CONST(2.1), CONST(0.1), CONST(-5.6), CONST(3.14)
+    };
     bool flOk = true;
 
     /* Call 'vec_sum_sqr_diff_s32' function */
-    z = vec_sum_sqr_diff_s32(x, y, 4, 10);
+    z = vec_sum_sqr_diff_s32(x, y, 4, RADIX);
 
     /* Check the correctness of the results */
-    if (z != res) {
+    if (z != 0) {
         flOk = false;
     }
 

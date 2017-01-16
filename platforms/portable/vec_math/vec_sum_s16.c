@@ -38,6 +38,11 @@ int32_t vec_sum_s16(const int16_t *pX, int len)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (12)
+#define CONST(X)  CIMLIB_CONST_S16(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_s16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -45,7 +50,9 @@ int32_t vec_sum_s16(const int16_t *pX, int len)
 bool test_vec_sum_s16(void)
 {
     int32_t y;
-    static int16_t x[4] = {32767, 32767, -32767, -32767};
+    static int16_t x[4] = {
+        CONST(2.1), CONST(0.1), CONST(-2.1), CONST(-0.1)
+    };
     bool flOk = true;
 
     /* Call 'vec_sum_s16' function */

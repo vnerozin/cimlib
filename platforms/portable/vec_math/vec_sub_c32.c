@@ -37,6 +37,11 @@ void vec_sub_c32(cint32_t *pZ, int len, const cint32_t *pX, const cint32_t *pY)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX  (24)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sub_c32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -45,14 +50,20 @@ bool test_vec_sub_c32(void)
 {
     cint32_t z[4];
     static cint32_t x[4] = {
-        {11111111, -2222222}, {333333, 4444444},
-        {-1111111, 22222222}, {-333333, -444444}
+        CONST_CPLX(2.1, 0.05),
+        CONST_CPLX(0.1, -0.05),
+        CONST_CPLX(-5.6, 3.001),
+        CONST_CPLX(3.14, 1.0)
     };
     static cint32_t y[4] = {
-        {11111111, -2222222}, {333333, 4444444},
-        {-1111111, 22222222}, {-333333, -444444}
+        CONST_CPLX(2.1, 0.05),
+        CONST_CPLX(0.1, -0.05),
+        CONST_CPLX(-5.6, 3.001),
+        CONST_CPLX(3.14, 1.0)
     };
-    static cint32_t res[4] = {{0, 0}, {0, 0}, {0, 0}, {0, 0}};
+    static cint32_t res[4] = {
+        {0, 0}, {0, 0}, {0, 0}, {0, 0}
+    };
     bool flOk = true;
 
     /* Call 'vec_sub_c32' function */

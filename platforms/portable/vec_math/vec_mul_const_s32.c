@@ -38,6 +38,11 @@ void vec_mul_const_s32(int32_t *pY, int len, int radix, const int32_t *pX,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (20)
+#define CONST(X)  CIMLIB_CONST_S32(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_mul_const_s32' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -45,13 +50,20 @@ void vec_mul_const_s32(int32_t *pY, int len, int radix, const int32_t *pX,
 bool test_vec_mul_const_s32(void)
 {
     int32_t y[4];
-    static int32_t x[4] = {333333, 222222, -234567890, 234567890};
-    static int32_t cnst = CIMLIB_CONST_S32(2.0, 24);
-    static int32_t res[4] = {666666, 444444, -469135780, 469135780};
+    static int32_t x[4] = {
+        CONST(7.9), CONST(4.0), CONST(-2.0), CONST(1.0)
+    };
+    static int32_t cnst = CONST(0.1);
+    static int32_t res[4] = {
+        CONST( 7.9000282288E-01),
+        CONST( 4.0000152588E-01),
+        CONST(-2.0000076294E-01),
+        CONST(0.1)
+    };
     bool flOk = true;
 
     /* Call 'vec_mul_const_s32' function */
-    vec_mul_const_s32(y, 4, 24, x, cnst);
+    vec_mul_const_s32(y, 4, RADIX, x, cnst);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(y, res, 4, flOk);

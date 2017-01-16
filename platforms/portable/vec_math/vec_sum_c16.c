@@ -44,6 +44,11 @@ cint32_t vec_sum_c16(const cint16_t *pX, int len)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX  (12)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_c16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -52,7 +57,10 @@ bool test_vec_sum_c16(void)
 {
     cint32_t y;
     static cint16_t in[4] = {
-        {32767,-32767}, {32767,-32767}, {-32767,32767}, {-32767,32767}
+        CONST_CPLX(2.1, 0.05),
+        CONST_CPLX(-2.1, -0.05),
+        CONST_CPLX(-5.6, 3.0),
+        CONST_CPLX(5.6, -3.0)
     };
     bool flOk = true;
 

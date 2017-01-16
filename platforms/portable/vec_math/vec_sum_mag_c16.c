@@ -41,6 +41,12 @@ uint32_t vec_sum_mag_c16(const cint16_t *pX, int len)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX               (10)
+#define CONST(X)            CIMLIB_CONST_U32(X, RADIX)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_mag_c16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -48,8 +54,13 @@ uint32_t vec_sum_mag_c16(const cint16_t *pX, int len)
 bool test_vec_sum_mag_c16(void)
 {
     uint32_t y;
-    static cint16_t x[4] = {{4096,128}, {8192,-128}, {-8192,128}, {-4096,0}};
-    static uint32_t res = 24577;
+    static cint16_t x[4] = {
+        CONST_CPLX(2.1, 0.05),
+        CONST_CPLX(0.1, -0.05),
+        CONST_CPLX(-5.6, 3.001),
+        CONST_CPLX(3.14, 1.0)
+    };
+    static uint32_t res = CONST(1.1858398438E+01);
     bool flOk = true;
 
     /* Call 'vec_sum_mag_c16' function */

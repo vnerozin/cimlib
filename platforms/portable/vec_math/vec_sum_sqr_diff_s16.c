@@ -53,6 +53,11 @@ uint32_t vec_sum_sqr_diff_s16(const int16_t *pX, const int16_t *pY, int len,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (12)
+#define CONST(X)  CIMLIB_CONST_S16(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_sqr_diff_s16' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -60,16 +65,19 @@ uint32_t vec_sum_sqr_diff_s16(const int16_t *pX, const int16_t *pY, int len,
 bool test_vec_sum_sqr_diff_s16(void)
 {
     uint32_t z;
-    static int16_t x[4] = {11111, 22222, 3333, 4444};
-    static int16_t y[4] = {-4444, -3333, -22222, -11111};
-    static uint32_t res = 1748078;
+    static int16_t x[4] = {
+        CONST(2.1), CONST(0.1), CONST(-5.6), CONST(3.14)
+    };
+    static int16_t y[4] = {
+        CONST(2.1), CONST(0.1), CONST(-5.6), CONST(3.14)
+    };
     bool flOk = true;
 
     /* Call 'vec_sum_sqr_diff_s16' function */
-    z = vec_sum_sqr_diff_s16(x, y, 4, 10);
+    z = vec_sum_sqr_diff_s16(x, y, 4, RADIX);
 
     /* Check the correctness of the results */
-    if (z != res) {
+    if (z != 0) {
         flOk = false;
     }
 

@@ -43,6 +43,16 @@ void vec_scale_radix_s16(int16_t *pY, int len, int offset, const int16_t *pX)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+#define RADIX_HI      (12)
+#define CONST_HI(X)   CIMLIB_CONST_S16(X, RADIX_HI)
+
+#define RADIX         (10)
+#define CONST(X)      CIMLIB_CONST_S16(X, RADIX)
+
+#define RADIX_LOW     (8)
+#define CONST_LOW(X)  CIMLIB_CONST_S16(X, RADIX_LOW)
+
+
 /*******************************************************************************
  * This function tests 'vec_scale_radix_s16' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -50,19 +60,25 @@ void vec_scale_radix_s16(int16_t *pY, int len, int offset, const int16_t *pX)
 bool test_vec_scale_radix_s16(void)
 {
     int16_t y[4];
-    static int16_t x[4] = {30, 20, -234, 234};
-    static int16_t res0[4] = {240, 160, -1872, 1872};
-    static int16_t res1[4] = {3, 2, -30, 29};
+    static int16_t x[4] = {
+        CONST(3.0), CONST(6.0), CONST(2.0), CONST(1.0)
+    };
+    static int16_t res0[4] = {
+        CONST_HI(3.0), CONST_HI(6.0), CONST_HI(2.0), CONST_HI(1.0)
+    };
+    static int16_t res1[4] = {
+        CONST_LOW(3.0), CONST_LOW(6.0), CONST_LOW(2.0), CONST_LOW(1.0)
+    };
     bool flOk = true;
 
     /* Call 'vec_scale_radix_s16' function */
-    vec_scale_radix_s16(y, 4, 3, x);
+    vec_scale_radix_s16(y, 4, RADIX_HI - RADIX, x);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(y, res0, 4, flOk);
 
     /* Call 'vec_scale_radix_s16' function */
-    vec_scale_radix_s16(y, 4, -3, x);
+    vec_scale_radix_s16(y, 4, RADIX_LOW - RADIX, x);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(y, res1, 4, flOk);

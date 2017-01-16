@@ -43,6 +43,16 @@ void vec_scale_radix_s32(int32_t *pY, int len, int offset, const int32_t *pX)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+#define RADIX_HI      (24)
+#define CONST_HI(X)   CIMLIB_CONST_S32(X, RADIX_HI)
+
+#define RADIX         (20)
+#define CONST(X)      CIMLIB_CONST_S32(X, RADIX)
+
+#define RADIX_LOW     (16)
+#define CONST_LOW(X)  CIMLIB_CONST_S32(X, RADIX_LOW)
+
+
 /*******************************************************************************
  * This function tests 'vec_scale_radix_s32' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -51,30 +61,24 @@ bool test_vec_scale_radix_s32(void)
 {
     int32_t y[4];
     static int32_t x[4] = {
-        CIMLIB_CONST_S32(4.1, 24),
-        CIMLIB_CONST_S32(2.6, 24),
-        CIMLIB_CONST_S32(-1.4, 24),
-        CIMLIB_CONST_S32(5.3, 24)
+        CONST(3.0), CONST(6.0), CONST(2.0), CONST(1.0)
     };
     static int32_t res0[4] = {
-        550292688, 348966096, -187904816, 711353960
+        CONST_HI(3.0), CONST_HI(6.0), CONST_HI(2.0), CONST_HI(1.0)
     };
     static int32_t res1[4] = {
-        CIMLIB_CONST_S32(4.1, 21),
-        CIMLIB_CONST_S32(2.6, 21),
-        -2936013,
-        11114905
+        CONST_LOW(3.0), CONST_LOW(6.0), CONST_LOW(2.0), CONST_LOW(1.0)
     };
     bool flOk = true;
 
     /* Call 'vec_scale_radix_s32' function */
-    vec_scale_radix_s32(y, 4, 3, x);
+    vec_scale_radix_s32(y, 4, RADIX_HI - RADIX, x);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(y, res0, 4, flOk);
 
     /* Call 'vec_scale_radix_s32' function */
-    vec_scale_radix_s32(y, 4, -3, x);
+    vec_scale_radix_s32(y, 4, RADIX_LOW - RADIX, x);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(y, res1, 4, flOk);

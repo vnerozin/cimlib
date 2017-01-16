@@ -47,6 +47,12 @@ uint32_t vec_sum_sqr_s16(const int16_t *pX, int len, int radix)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX       (10)
+#define CONST(X)    CIMLIB_CONST_S16(X, RADIX)
+#define CONST_U(X)  CIMLIB_CONST_U16(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_sqr_s16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -54,12 +60,14 @@ uint32_t vec_sum_sqr_s16(const int16_t *pX, int len, int radix)
 bool test_vec_sum_sqr_s16(void)
 {
     uint32_t y;
-    static int16_t x[4] = {4096, 8192, -8192, -4096};
-    static uint32_t res = 163840;
+    static int16_t x[4] = {
+        CONST(3.0), CONST(4.0), CONST(2.0), CONST(1.0)
+    };
+    static uint32_t res = CONST_U(30.0);
     bool flOk = true;
 
     /* Call 'vec_sum_sqr_s16' function */
-    y = vec_sum_sqr_s16(x, 4, 10);
+    y = vec_sum_sqr_s16(x, 4, RADIX);
 
     /* Check the correctness of the results */
     if (y != res) {

@@ -39,6 +39,12 @@ void vec_sqra_long_c32(uint64_t *pYAcc, int len, const cint32_t *pX)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX               (30)
+#define CONST_LONG(X)       CIMLIB_CONST_U64(X, RADIX * 2)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sqra_long_c32' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -46,12 +52,17 @@ void vec_sqra_long_c32(uint64_t *pYAcc, int len, const cint32_t *pX)
 bool test_vec_sqra_long_c32(void)
 {
     static cint32_t x[4] = {
-        {327670, 327671}, {40950000, -40951111},
-        {32767111, -3276811}, {1234567, -7654321}
+        CONST_CPLX( 9.9996948242E-01,  9.9996948242E-01),
+        CONST_CPLX( 1.2496948242E-01, -1.2496948242E-01),
+        CONST_CPLX( 9.9996948242E-01, -1.0000000000E+00),
+        CONST_CPLX( 3.7658691406E-02, -1.3186645508E-01)
     };
     uint64_t y[4] = {0, 0, 0, 0};
     static uint64_t res[4] = {
-        214735913141, 3353895992134321, 1084421053616042, 60112785648530
+        CONST_LONG( 1.99987793155014514923E+00),
+        CONST_LONG( 3.12347430735826492310E-02),
+        CONST_LONG( 1.99993896577507257462E+00),
+        CONST_LONG( 1.88069390133023262024E-02)
     };
     bool flOk = true;
 

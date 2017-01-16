@@ -48,6 +48,12 @@ uint64_t vec_sum_sqr_c32(const cint32_t *pX, int len, int radix)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX               (23)
+#define CONST(X)            CIMLIB_CONST_U64(X, RADIX)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_sqr_c32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -56,14 +62,16 @@ bool test_vec_sum_sqr_c32(void)
 {
     uint64_t y;
     static cint32_t x[4] = {
-        {4096000, 128000}, {8192000, -128000},
-        {-819200, 120008}, {-4090006, 0}
+        CONST_CPLX( 9.9996948242E-01,  9.9996948242E-01),
+        CONST_CPLX( 1.2496948242E-01, -1.2496948242E-01),
+        CONST_CPLX( 9.9996948242E-01, -1.0000000000E+00),
+        CONST_CPLX( 3.7658691406E-02, -1.3186645508E-01)
     };
-    static uint64_t res = 98957507461;
+    static uint64_t res = CONST(4.0498585701E+00);
     bool flOk = true;
 
     /* Call 'vec_sum_sqr_c32' function */
-    y = vec_sum_sqr_c32(x, 4, 10);
+    y = vec_sum_sqr_c32(x, 4, RADIX);
 
     /* Check the correctness of the results */
     if (y != res) {

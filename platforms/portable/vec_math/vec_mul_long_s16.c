@@ -37,6 +37,12 @@ void vec_mul_long_s16(int32_t *pZ, int len, const int16_t *pX,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX          (12)
+#define CONST(X)       CIMLIB_CONST_S16(X, RADIX)
+#define CONST_LONG(X)  CIMLIB_CONST_S32(X, RADIX * 2)
+
+
 /*******************************************************************************
  * This function tests 'vec_mul_long_s16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -44,9 +50,18 @@ void vec_mul_long_s16(int32_t *pZ, int len, const int16_t *pX,
 bool test_vec_mul_long_s16(void)
 {
     int32_t z[4];
-    static int16_t x[4] = {100, 1000, 10000, INT16_MIN};
-    static int16_t y[4] = {INT16_MIN, 10000, 1000, 100};
-    static int32_t res[4] = {-3276800, 10000000, 10000000, -3276800};
+    static int16_t x[4] = {
+        CONST(7.9), CONST(4.0), CONST(2.0), CONST(1.0)
+    };
+    static int16_t y[4] = {
+        CONST(2.2), CONST(3.3), CONST(1.1), CONST(0.2)
+    };
+    static int32_t res[4] = {
+        CONST_LONG(1.7379399419E+01),
+        CONST_LONG(1.3200195312E+01),
+        CONST_LONG(2.2001953125E+00),
+        CONST_LONG(1.9995117188E-01)
+    };
     bool flOk = true;
 
     /* Call 'vec_mul_long_s16' function */

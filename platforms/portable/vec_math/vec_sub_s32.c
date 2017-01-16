@@ -36,6 +36,11 @@ void vec_sub_s32(int32_t *pZ, int len, const int32_t *pX, const int32_t *pY)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (28)
+#define CONST(X)  CIMLIB_CONST_S32(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sub_s32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -43,8 +48,12 @@ void vec_sub_s32(int32_t *pZ, int len, const int32_t *pX, const int32_t *pY)
 bool test_vec_sub_s32(void)
 {
     int32_t z[4];
-    static int32_t x[4] = {11111111, -2222222, 333333, 44444444};
-    static int32_t y[4] = {11111111, -2222222, 333333, 44444444};
+    static int32_t x[4] = {
+        CONST(2.1), CONST(0.1), CONST(-5.6), CONST(3.14)
+    };
+    static int32_t y[4] = {
+        CONST(2.1), CONST(0.1), CONST(-5.6), CONST(3.14)
+    };
     static int32_t res[4] = {0, 0, 0, 0};
     bool flOk = true;
 

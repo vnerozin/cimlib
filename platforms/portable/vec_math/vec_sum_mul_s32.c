@@ -48,6 +48,11 @@ int64_t vec_sum_mul_s32(const int32_t *pX, const int32_t *pY, int len,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (20)
+#define CONST(X)  CIMLIB_CONST_S32(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_mul_s32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -55,13 +60,17 @@ int64_t vec_sum_mul_s32(const int32_t *pX, const int32_t *pY, int len,
 bool test_vec_sum_mul_s32(void)
 {
     int64_t z;
-    static int32_t x[4] = {100, 1000, 10000, INT32_MIN};
-    static int32_t y[4] = {INT32_MIN, 10000, 1000, 100};
-    static int64_t res = -6710573900;
+    static int32_t x[4] = {
+        CONST(7.9), CONST(4.0), CONST(2.0), CONST(1.0)
+    };
+    static int32_t y[4] = {
+        CONST(-1.0), CONST(-2.0), CONST(4.0), CONST(7.9)
+    };
+    static int64_t res = 0;
     bool flOk = true;
 
     /* Call 'vec_sum_mul_s32' function */
-    z = vec_sum_mul_s32(x, y, 4, 6);
+    z = vec_sum_mul_s32(x, y, 4, RADIX);
 
     /* Check the correctness of the results */
     if (z != res) {

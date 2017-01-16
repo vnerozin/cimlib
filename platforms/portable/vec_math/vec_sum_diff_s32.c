@@ -40,6 +40,11 @@ int64_t vec_sum_diff_s32(const int32_t *pX, const int32_t *pY, int len)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (28)
+#define CONST(X)  CIMLIB_CONST_S32(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_diff_s32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -47,8 +52,12 @@ int64_t vec_sum_diff_s32(const int32_t *pX, const int32_t *pY, int len)
 bool test_vec_sum_diff_s32(void)
 {
     int64_t z;
-    static int32_t x[4] = { INT32_MAX, INT32_MIN, INT32_MAX, INT32_MIN };
-    static int32_t y[4] = { INT32_MAX, INT32_MIN, INT32_MAX, INT32_MIN };
+    static int32_t x[4] = {
+        CONST(2.1), CONST(0.1), CONST(-5.6), CONST(3.14)
+    };
+    static int32_t y[4] = {
+        CONST(2.1), CONST(0.1), CONST(-5.6), CONST(3.14)
+    };
     bool flOk = true;
 
     /* Call 'vec_sum_diff_s32' function */

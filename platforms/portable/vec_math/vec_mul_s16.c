@@ -39,6 +39,11 @@ void vec_mul_s16(int16_t *pZ, int len, int radix, const int16_t *pX,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (10)
+#define CONST(X)  CIMLIB_CONST_S16(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_mul_s16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -46,13 +51,22 @@ void vec_mul_s16(int16_t *pZ, int len, int radix, const int16_t *pX,
 bool test_vec_mul_s16(void)
 {
     int16_t z[4];
-    static int16_t x[4] = {100, 1000, 10000, -32768};
-    static int16_t y[4] = {-32768, 10000, 1000, 100};
-    static int16_t res[4] = {-800, 2441, 2441, -800};
+    static int16_t x[4] = {
+        CONST(7.9), CONST(4.0), CONST(2.0), CONST(1.0)
+    };
+    static int16_t y[4] = {
+        CONST(2.2), CONST(3.3), CONST(1.1), CONST(0.2)
+    };
+    static int16_t res[4] = {
+        CONST( 1.7381835938E+01),
+        CONST( 1.3199218750E+01),
+        CONST( 2.1992187500E+00),
+        CONST( 2.0019531250E-01)
+    };
     bool flOk = true;
 
     /* Call 'vec_mul_s16' function */
-    vec_mul_s16(z, 4, 12, x, y);
+    vec_mul_s16(z, 4, RADIX, x, y);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(z, res, 4, flOk);

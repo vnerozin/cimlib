@@ -42,6 +42,11 @@ void vec_mul_const_c32(cint32_t *pY, int len, int radix, const cint32_t *pX,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX  (28)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests '' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -50,21 +55,22 @@ bool test_vec_mul_const_c32(void)
 {
     cint32_t y[4];
     static cint32_t x[4] = {
-        {11111111, -2222222}, {-3333333, 4444444},
-        {55555555, -6666666}, {-7777777, 8888888}
+        CONST_CPLX(0.33, 0.75),
+        CONST_CPLX(0.33, -0.75),
+        CONST_CPLX(-0.33, 0.75),
+        CONST_CPLX(-0.33, -0.75),
     };
     static cint32_t res[4] = {
-        {21111111, -10000000}, {-4444444, 10555554},
-        {107777777, -41111110}, {-11111110, 21666664}
+        CONST_CPLX( 0.0000000000E+00,  6.7139999568E-01),
+        CONST_CPLX( 4.9499999732E-01, -4.5360000432E-01),
+        CONST_CPLX(-4.9499999732E-01,  4.5360000059E-01),
+        CONST_CPLX( 0.0000000000E+00, -6.7139999941E-01)
     };
-    static cint32_t cnst = {
-         CIMLIB_CONST_S32(2.0, 24) ,
-        -CIMLIB_CONST_S32(0.5, 24)
-    };
+    static cint32_t cnst = CONST_CPLX(0.75, 0.33);
     bool flOk = true;
 
     /* Call 'vec_mul_const_c32' function */
-    vec_mul_const_c32(y, 4, 24, x, cnst);
+    vec_mul_const_c32(y, 4, RADIX, x, cnst);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_CPLX(y, res, 4, flOk);

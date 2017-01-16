@@ -60,10 +60,10 @@ int16_t y[4] = {
     CONST(2.2), CONST(3.3), CONST(1.1), CONST(0.2)
 };
 
-vec_mul_s16(z, 4, RADIX, x, y)
+vec_mul_s16(z, 4, RADIX, x, y);
 ```
 
-For more detailed examples, see test functions in each function's source files. 
+For more detailed examples, see test functions in each function's source file. 
 
 ## Test
 
@@ -76,3 +76,7 @@ make portable test
 ## Author & Copyright
 
 Copyright (c) 2017 Vasiliy Nerozin. See `LICENSE.md` file for licensing.
+
+## Contacts 
+
+vnerozin@gmail.com

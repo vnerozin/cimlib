@@ -58,13 +58,13 @@ bool test_vec_mul_c16(void)
         CONST_CPLX(0.75, 0.33),
         CONST_CPLX(0.75, 0.33),
         CONST_CPLX(0.75, 0.33),
-        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33)
     };
     static cint16_t y[4] = {
         CONST_CPLX(0.33, 0.75),
         CONST_CPLX(0.33, -0.75),
         CONST_CPLX(-0.33, 0.75),
-        CONST_CPLX(-0.33, -0.75),
+        CONST_CPLX(-0.33, -0.75)
     };
     static cint16_t res[4] = {
         CONST_CPLX( 0.0000000000E+00,  6.7138671875E-01),

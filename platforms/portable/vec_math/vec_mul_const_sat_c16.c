@@ -46,25 +46,36 @@ void vec_mul_const_sat_c16(cint16_t *pY, int len, int radix, const cint16_t *pX,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX               (14)
+#define CONST(X)            CIMLIB_CONST_S16(X, RADIX)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
+
+
 /*******************************************************************************
- * This function tests '' function. Returns 'true' if validation
- * is successfully done, 'false' - otherwise.
+ * This function tests 'vec_mul_const_sat_c16' function. Returns 'true' if
+ * validation is successfully done, 'false' - otherwise.
  ******************************************************************************/
 bool test_vec_mul_const_sat_c16(void)
 {
     cint16_t y[4];
     static cint16_t x[4] = {
-        {11111, -22220}, {31111, 4444}, {5555, -6666}, {-7777, 8888}
+        CONST_CPLX(0.33, 0.75),
+        CONST_CPLX(1.33, -1.9),
+        CONST_CPLX(-1.33, 1.9),
+        CONST_CPLX(-0.33, -0.75)
     };
     static cint16_t res[4] = {
-        {-11109, INT16_MIN}, {INT16_MAX, -26667},
-        {-1111, -12221}, {1111, 16665}
+        CONST_CPLX(1.1547851562E-01,  9.3383789062E-01),
+        {INT16_MAX, CONST(-1.6510620117E+00)},
+        {INT16_MIN, CONST( 1.6510009766E+00)},
+        CONST_CPLX(-1.1553955078E-01, -9.3389892578E-01)
     };
-    static cint16_t cnst = {4096, -4096};
+    static cint16_t cnst = CONST_CPLX(1.1, 0.33);
     bool flOk = true;
 
     /* Call 'vec_mul_const_sat_c16' function */
-    vec_mul_const_sat_c16(y, 4, 12, x, cnst);
+    vec_mul_const_sat_c16(y, 4, RADIX, x, cnst);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_CPLX(y, res, 4, flOk);

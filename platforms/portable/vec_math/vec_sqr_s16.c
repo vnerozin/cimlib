@@ -37,6 +37,12 @@ void vec_sqr_s16(uint16_t *pY, int len, int radix, const int16_t *pX)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX       (10)
+#define CONST(X)    CIMLIB_CONST_S16(X, RADIX)
+#define CONST_U(X)  CIMLIB_CONST_U16(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sqr_s16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -44,12 +50,16 @@ void vec_sqr_s16(uint16_t *pY, int len, int radix, const int16_t *pX)
 bool test_vec_sqr_s16(void)
 {
     uint16_t y[4];
-    static int16_t x[4] = {100, 1000, 10000, -10000};
-    static uint16_t res[4] = {2, 244, 24414, 24414};
+    static int16_t x[4] = {
+        CONST(3.0), CONST(4.0), CONST(2.0), CONST(1.0)
+    };
+    static uint16_t res[4] = {
+        CONST_U(9.0), CONST_U(16.0), CONST_U(4.0), CONST_U(1.0)
+    };
     bool flOk = true;
 
     /* Call 'vec_sqr_s16' function */
-    vec_sqr_s16(y, 4, 12, x);
+    vec_sqr_s16(y, 4, RADIX, x);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(y, res, 4, flOk);

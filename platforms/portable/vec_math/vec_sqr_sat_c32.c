@@ -41,6 +41,12 @@ void vec_sqr_sat_c32(uint32_t *pY, int len, int radix, const cint32_t *pX)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX               (28)
+#define CONST(X)            CIMLIB_CONST_U32(X, RADIX)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sqr_sat_c32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -49,14 +55,21 @@ bool test_vec_sqr_sat_c32(void)
 {
     uint32_t y[4];
     static cint32_t x[4] = {
-        {(1 << 23), (1 << 23)}, {4095, -4095},
-        {-(1 << 23), -32768}, {12345678, -6754321}
+        CONST_CPLX(3.9,  3.9),
+        CONST_CPLX(0.12, -0.12),
+        CONST_CPLX(-3.9,  3.5),
+        CONST_CPLX(0.03, -0.06)
     };
-    static uint32_t res[4] = {UINT32_MAX, 1023, 2147516416, UINT32_MAX};
+    static uint32_t res[4] = {
+        UINT32_MAX,
+        CONST(2.8799999505E-02),
+        UINT32_MAX,
+        CONST(4.4999979436E-03)
+    };
     bool flOk = true;
 
     /* Call 'vec_sqr_sat_c32' function */
-    vec_sqr_sat_c32(y, 4, 15, x);
+    vec_sqr_sat_c32(y, 4, RADIX, x);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(y, res, 4, flOk);

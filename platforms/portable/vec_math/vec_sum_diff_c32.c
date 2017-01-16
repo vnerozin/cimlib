@@ -41,6 +41,11 @@ cint64_t vec_sum_diff_c32(const cint32_t *pX, const cint32_t *pY, int len)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX  (24)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_diff_c32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -49,12 +54,16 @@ bool test_vec_sum_diff_c32(void)
 {
     cint64_t z;
     static cint32_t x[4] = {
-        {INT32_MAX, INT32_MIN + 1}, {INT32_MAX, INT32_MIN + 1},
-        {INT32_MIN + 1, INT32_MAX}, {INT32_MIN + 1, INT32_MAX}
+        CONST_CPLX(2.1, 0.05),
+        CONST_CPLX(0.1, -0.05),
+        CONST_CPLX(-5.6, 3.001),
+        CONST_CPLX(3.14, 1.0)
     };
     static cint32_t y[4] = {
-        {INT32_MAX, INT32_MIN + 1}, {INT32_MAX, INT32_MIN + 1},
-        {INT32_MIN + 1, INT32_MAX}, {INT32_MIN + 1, INT32_MAX}
+        CONST_CPLX(2.1, 0.05),
+        CONST_CPLX(0.1, -0.05),
+        CONST_CPLX(-5.6, 3.001),
+        CONST_CPLX(3.14, 1.0)
     };
     bool flOk = true;
 

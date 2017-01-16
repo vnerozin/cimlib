@@ -37,6 +37,11 @@ void vec_sub_c16(cint16_t *pZ, int len, const cint16_t *pX, const cint16_t *pY)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX  (12)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sub_c16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -45,12 +50,20 @@ bool test_vec_sub_c16(void)
 {
     cint16_t z[4];
     static cint16_t x[4] = {
-        {11111, -2222}, {333, 44}, {-11111, 2222}, {-333, -44}
+        CONST_CPLX(2.1, 0.05),
+        CONST_CPLX(0.1, -0.05),
+        CONST_CPLX(-5.6, 3.001),
+        CONST_CPLX(3.14, 1.0)
     };
     static cint16_t y[4] = {
-        {11111, -2222}, {333, 44}, {-11111, 2222}, {-333, -44}
+        CONST_CPLX(2.1, 0.05),
+        CONST_CPLX(0.1, -0.05),
+        CONST_CPLX(-5.6, 3.001),
+        CONST_CPLX(3.14, 1.0)
     };
-    static cint16_t res[4] = {{0, 0}, {0, 0}, {0, 0}, {0, 0}};
+    static cint16_t res[4] = {
+        {0, 0}, {0, 0}, {0, 0}, {0, 0}
+    };
     bool flOk = true;
 
     /* Call 'vec_sub_c16' function */

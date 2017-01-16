@@ -54,6 +54,13 @@ cint64_t vec_sum_mul_c32s32(const cint32_t *pX, const int32_t *pY, int len,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX                    (28)
+#define CONST(X)                 CIMLIB_CONST_S32(X, RADIX)
+#define CONST_CPLX(RE, IM)       CIMLIB_CONST_C32(RE, IM, RADIX)
+#define CONST_CPLX_LONG(RE, IM)  CIMLIB_CONST_C64(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_sum_mul_c32s32' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -62,15 +69,19 @@ bool test_vec_sum_mul_c32s32(void)
 {
     cint64_t z;
     static cint32_t x[4] = {
-        {4096000,128000}, {81920000,-1280000},
-        {-8192000,128000}, {-40960000,0}
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
     };
-    static int32_t y[4] = {1234, 1234, 1234, 1234};
-    static cint64_t res = {2843136000, -78976000};
+    static int32_t y[4] = {
+        CONST(0.5), CONST(1.0), CONST(1.5), CONST(-2.0)
+    };
+    static cint64_t res = CONST_CPLX_LONG(7.5E-01, 3.2999999821E-01);
     bool flOk = true;
 
     /* Call 'vec_sum_mul_c32s32' function */
-    z = vec_sum_mul_c32s32(x, y, 4, 4);
+    z = vec_sum_mul_c32s32(x, y, 4, RADIX);
 
     /* Check the correctness of the results */
     if ((z.re != res.re) || (z.im != res.im)) {
