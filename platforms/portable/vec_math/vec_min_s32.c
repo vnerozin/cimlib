@@ -48,6 +48,11 @@ int32_t vec_min_s32(int *pIdxMin, const int32_t *pX, int len)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (24)
+#define CONST(X)  CIMLIB_CONST_S32(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_min_s32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -56,9 +61,11 @@ bool test_vec_min_s32(void)
 {
     int idxMax;
     int32_t maxX;
-    int32_t in[4] = {-11, 0, INT32_MIN, 1 << 24};
-    int32_t maxRes = INT32_MIN;
-    int idxRes = 2;
+    int32_t in[4] = {
+        CONST(2.1), CONST(0.1), CONST(3.14), CONST(-5.6)
+    };
+    int32_t maxRes = CONST(-5.6);
+    int idxRes = 3;
     bool flOk = true;
 
     /* Call 'vec_min_s32' function */

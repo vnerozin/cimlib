@@ -38,6 +38,12 @@ void vec_mul_cj_long_c32(cint64_t *pZ, int len, const cint32_t *pX,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX  (28)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+#define CONST_CPLX_LONG(RE, IM)  CIMLIB_CONST_C64(RE, IM, RADIX * 2)
+
+
 /*******************************************************************************
  * This function tests 'vec_mul_cj_long_c32' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -46,18 +52,22 @@ bool test_vec_mul_cj_long_c32(void)
 {
     cint64_t z[4];
     static cint32_t x[4] = {
-        {123456789, 98785432}, {123456789, 98785432},
-        {123456789, 98785432}, {123456789, 98785432}
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
     };
     static cint32_t y[4] = {
-        {98785432, 123456789}, {98785432, -123456789},
-        {-98785432, 123456789}, {-98785432, -123456789}
+        CONST_CPLX(0.33, 0.75),
+        CONST_CPLX(0.33, -0.75),
+        CONST_CPLX(-0.33, 0.75),
+        CONST_CPLX(-0.33, -0.75),
     };
     static cint64_t res[4] = {
-        {24391464469395696, -5483017174763897},
-        {0, 25000140325617145},
-        {0, -25000140325617145},
-        {-24391464469395696, 5483017174763897}
+        CONST_CPLX_LONG( 4.9499999731779098510E-01, -4.5360000118017196335E-01),
+        CONST_CPLX_LONG( 0.0000000000000000000E+00,  6.7139999881982803664E-01),
+        CONST_CPLX_LONG( 0.0000000000000000000E+00, -6.7139999881982803664E-01),
+        CONST_CPLX_LONG(-4.9499999731779098510E-01,  4.5360000118017196335E-01)
     };
     bool flOk = true;
 

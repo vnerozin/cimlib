@@ -7,7 +7,7 @@ DSP platform.
 
 Library consist from memory operation, scalar and vector functions. Most of 
 functions exist in signed and complex 16 bit and 32 bit versions. For easy 
-debug lot of functions exist on versions with saturation control.
+debug lot of functions are implemented with saturation control.
 
 Table 1 - Function names prefixes/suffixes
 

@@ -60,6 +60,11 @@ uint16_t vec_max_sqr_sat_c16(int *pIdxMax, const cint16_t *pX, int len,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX               (14)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_max_sqr_sat_c16' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -69,14 +74,17 @@ bool test_vec_max_sqr_sat_c16(void)
     int idxMax;
     uint16_t maxEng;
     static cint16_t x[4] = {
-        {32767, 32767}, {4095, -4095}, {32767, -32768}, {1234, -4321}
+        CONST_CPLX(0.1,  1.9),
+        CONST_CPLX(0.12, -0.12),
+        CONST_CPLX(-1.9,  1.5),
+        CONST_CPLX(0.03, -0.06)
     };
     static uint16_t maxRes = UINT16_MAX;
     static int idxRes = 2;
     bool flOk = true;
 
     /* Call 'vec_max_sqr_sat_c16' function */
-    maxEng = vec_max_sqr_sat_c16(&idxMax, x, 4, 14);
+    maxEng = vec_max_sqr_sat_c16(&idxMax, x, 4, RADIX);
 
     /* Check the correctness of the results */
     if ((maxEng != maxRes) || (idxMax != idxRes)) {

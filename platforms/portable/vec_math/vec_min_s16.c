@@ -48,6 +48,11 @@ int16_t vec_min_s16(int *pIdxMin, const int16_t *pX, int len)
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX     (12)
+#define CONST(X)  CIMLIB_CONST_S16(X, RADIX)
+
+
 /*******************************************************************************
  * This function tests 'vec_min_s16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
@@ -56,8 +61,10 @@ bool test_vec_min_s16(void)
 {
     int idxMax;
     int16_t maxX;
-    int16_t in[4] = {-11, 0, 16535, -32768};
-    int16_t maxRes = -32768;
+    int16_t in[4] = {
+        CONST(2.1), CONST(0.1), CONST(3.14), CONST(-5.6)
+    };
+    int16_t maxRes = CONST(-5.6);
     int idxRes = 3;
     bool flOk = true;
 

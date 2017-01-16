@@ -38,6 +38,12 @@ void vec_mul_cj_long_c16(cint32_t *pZ, int len, const cint16_t *pX,
 
 #if (CIMLIB_BUILD_TEST == 1)
 
+/* Simplify macroses for fixed radix */
+#define RADIX  (14)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
+#define CONST_CPLX_LONG(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX * 2)
+
+
 /*******************************************************************************
  * This function tests 'vec_mul_cj_long_c16' function. Returns 'true' if
  * validation is successfully done, 'false' - otherwise.
@@ -46,14 +52,22 @@ bool test_vec_mul_cj_long_c16(void)
 {
     cint32_t z[4];
     static cint16_t x[4] = {
-        {12345, 5432}, {12345, 5432}, {12345, 5432}, {12345, 5432}
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
+        CONST_CPLX(0.75, 0.33),
     };
     static cint16_t y[4] = {
-        {5432, 12345}, {5432, -12345}, {-5432, 12345}, {-5432, -12345}
+        CONST_CPLX(0.33, 0.75),
+        CONST_CPLX(0.33, -0.75),
+        CONST_CPLX(-0.33, 0.75),
+        CONST_CPLX(-0.33, -0.75),
     };
     static cint32_t res[4] = {
-        {134116080, -122892401}, {0, 181905649},
-        {0, -181905649}, {-134116080, 122892401}
+        CONST_CPLX_LONG( 4.9502563477E-01, -4.5358872041E-01),
+        CONST_CPLX_LONG( 0.0000000000E+00,  6.7141127959E-01),
+        CONST_CPLX_LONG( 0.0000000000E+00, -6.7141127959E-01),
+        CONST_CPLX_LONG(-4.9502563477E-01,  4.5358872041E-01)
     };
     bool flOk = true;
 
