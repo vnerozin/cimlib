@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -16,12 +16,12 @@
  * ---------------------------------------------------------------------------*/
 
 /*******************************************************************************
- *      @fn  int16_t sc_rcp_s16(int16_t x,
- *                              int radix)
- *   @param  x      Input value, 16 bit signed
- *   @param  radix  Radix
- *  @return  Reciprocal of input value, 16 bit unsigned
- *   @brief  This function calculates reciprocal of input value, 16 bit signed
+ * This function calculates reciprocal of input value, 16 bit signed.
+ *
+ * @param[in]  x      Input value, 16 bit signed.
+ * @param[in]  radix  Radix.
+ *
+ * @return            Reciprocal of input value, 16 bit unsigned.
  ******************************************************************************/
 int16_t sc_rcp_s16(int16_t x, int radix)
 {

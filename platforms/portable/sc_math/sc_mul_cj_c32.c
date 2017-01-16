@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -18,11 +18,11 @@
 /*******************************************************************************
  * This function multiplies with conjugate two input values, 32 bit complex.
  *
- * @param  x      Input value, 32 bit complex.
- * @param  y      Input value, 32 bit complex.
- * @param  radix  Radix.
+ * @param[in]  x      Input value, 32 bit complex.
+ * @param[in]  y      Input value, 32 bit complex.
+ * @param[in]  radix  Radix.
  *
- * @return  Conjugate multiply of input values, 32 bit complex.
+ * @return            Conjugate multiply of input values, 32 bit complex.
  ******************************************************************************/
 cint32_t sc_mul_cj_c32(cint32_t x, cint32_t y, int radix)
 {

@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -19,10 +19,10 @@
  * This function calculates by element multiply of input vectors, 16 bit signed,
  * result with extended precision and accumulated to output vector.
  *
- * @param[out]  pZ   Pointer to output vector, 16 bit signed.
- * @param[in]   len  Vector length.
- * @param[in]   pX   Pointer to input vector, 16 bit signed.
- * @param[in]   pY   Pointer to input vector, 16 bit signed.
+ * @param[in,out]  pZ   Pointer to input-output vector, 16 bit signed.
+ * @param[in]      len  Vector length.
+ * @param[in]      pX   Pointer to input vector, 16 bit signed.
+ * @param[in]      pY   Pointer to input vector, 16 bit signed.
  ******************************************************************************/
 void vec_mac_long_s16(int32_t *pZ, int len, const int16_t *pX,
                       const int16_t *pY)

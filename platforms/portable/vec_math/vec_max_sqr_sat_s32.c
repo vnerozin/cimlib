@@ -15,7 +15,6 @@
  * Exported functions
  * ---------------------------------------------------------------------------*/
 
-
 /*******************************************************************************
  * This function searches maximum square and it index of vector, 32 bit signed,
  * result is with saturation control.

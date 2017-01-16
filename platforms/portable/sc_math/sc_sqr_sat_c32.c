@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -22,7 +22,7 @@
  * @param[in]  x      Input value, 32 bit complex.
  * @param[in]  radix  Radix.
  *
- * @return  Square of input value, 32 bit unsigned.
+ * @return            Square of input value, 32 bit unsigned.
  ******************************************************************************/
 uint32_t sc_sqr_sat_c32(cint32_t x, int radix)
 {

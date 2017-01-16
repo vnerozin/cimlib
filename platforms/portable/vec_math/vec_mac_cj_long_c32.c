@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -20,10 +20,10 @@
  * vectors, 32 bit complex, result with extended precision and accumulated to
  * output vector.
  *
- * @param[out]  pZ   Pointer to output vector, 32 bit complex.
- * @param[in]   len  Vector length.
- * @param[in]   pX   Pointer to input vector, 32 bit complex.
- * @param[in]   pY   Pointer to input vector, 32 bit complex.
+ * @param[in,out]  pZ   Pointer to input-output vector, 32 bit complex.
+ * @param[in]      len  Vector length.
+ * @param[in]      pX   Pointer to input vector, 32 bit complex.
+ * @param[in]      pY   Pointer to input vector, 32 bit complex.
  ******************************************************************************/
 void vec_mac_cj_long_c32(cint64_t *pZ, int len, const cint32_t *pX,
                          const cint32_t *pY)

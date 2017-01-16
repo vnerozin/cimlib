@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -19,9 +19,10 @@
  * This function calculates square of each element of vector, 16 bit signed,
  * result is accumulated with extended precision.
  *
- * @param[out]  pYAcc  Pointer to output accumulation vector, 32 bit unsigned.
- * @param[in]   len    Vector length.
- * @param[in]   pX     Pointer to input vector, 16 bit signed.
+ * @param[in,out]  pYAcc  Pointer to input-output accumulation vector,
+ *                       32 bit unsigned.
+ * @param[in]      len    Vector length.
+ * @param[in]      pX     Pointer to input vector, 16 bit signed.
  ******************************************************************************/
 void vec_sqra_long_s16(uint32_t *pYAcc, int len, const int16_t *pX)
 {

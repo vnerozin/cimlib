@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -19,11 +19,11 @@
  * This function calculates by element complex conjugate multiply of input
  * vectors, 16 bit complex, result is accumulated in output vector.
  *
- * @param[out]  pZ     Pointer to output vector, 16 bit complex.
- * @param[in]   len    Vector length.
- * @param[in]   radix  Radix.
- * @param[in]   pX     Pointer to input vector, 16 bit complex.
- * @param[in]   pY     Pointer to input vector, 16 bit complex.
+ * @param[in,out]  pZ     Pointer to input-output vector, 16 bit complex.
+ * @param[in]      len    Vector length.
+ * @param[in]      radix  Radix.
+ * @param[in]      pX     Pointer to input vector, 16 bit complex.
+ * @param[in]      pY     Pointer to input vector, 16 bit complex.
  ******************************************************************************/
 void vec_mac_cj_c16(cint16_t *pZ, int len, int radix, const cint16_t *pX,
                     const cint16_t *pY)

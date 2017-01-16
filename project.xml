@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <project name="CIMLIB">
-    <version>0.1.0</version>
+    <version>0.2.0-SNAPSHOT</version>
     <copyright>Copyright (c) 2017 Vasiliy Nerozin</copyright>
     <astyle>-jk3A10pf --suffix=none --max-code-length=80</astyle>
     <platforms>

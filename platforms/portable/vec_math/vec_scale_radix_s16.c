@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -16,13 +16,13 @@
  * ---------------------------------------------------------------------------*/
 
 /*******************************************************************************
- * This function scales base radix of input vector, 16 bit signed
+ * This function scales base radix of input vector, 16 bit signed.
  *
- * @param[out]  pY      Pointer to output vector, 16 bit signed
- * @param[in]   len     Vector length
+ * @param[out]  pY      Pointer to output vector, 16 bit signed.
+ * @param[in]   len     Vector length.
  * @param[in]   offset  Scale radix offset, number of shifts right, if negative;
- *                      if positive - left shifts
- * @param[in]   pX      Pointer to input vector, 16 bit signed
+ *                      if positive - left shifts.
+ * @param[in]   pX      Pointer to input vector, 16 bit signed.
  ******************************************************************************/
 void vec_scale_radix_s16(int16_t *pY, int len, int offset, const int16_t *pX)
 {

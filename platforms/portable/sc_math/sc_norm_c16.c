@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -21,7 +21,7 @@
  * @param[in]  x      Input value, 16 bit complex.
  * @param[in]  radix  Radix.
  *
- * @return  Normalised input value by it's magnitude, 16 bit complex.
+ * @return            Normalised input value by it's magnitude, 16 bit complex.
  ******************************************************************************/
 cint16_t sc_norm_c16(cint16_t x, int radix)
 {

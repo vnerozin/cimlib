@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -19,10 +19,10 @@
  * This function calculates cosine of input value normalised by 'pi,
  * 16 bit signed. Input value limits are [-1.0..1.0].
  *
- * @param  x      Value normalised by 'pi', 16 bit signed.
- * @param  radix  Radix.
+ * @param[in]  x      Value normalised by 'pi', 16 bit signed.
+ * @param[in]  radix  Radix.
  *
- * @return        Cosine of value, 16 bit signed.
+ * @return            Cosine of value, 16 bit signed.
  ******************************************************************************/
 int16_t sc_cos_s16(int16_t x, int radix)
 {

@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -19,10 +19,10 @@
  * This function calculates by element multiply of input vectors, 32 bit signed,
  * result with extended precision and accumulated to output vector.
  *
- * @param[out]  pZ   Pointer to output vector, 32 bit signed.
- * @param[in]   len  Vector length.
- * @param[in]   pX   Pointer to input vector, 32 bit signed.
- * @param[in]   pY   Pointer to input vector, 32 bit signed.
+ * @param[in,out]  pZ   Pointer to input-output vector, 32 bit signed.
+ * @param[in]      len  Vector length.
+ * @param[in]      pX   Pointer to input vector, 32 bit signed.
+ * @param[in]      pY   Pointer to input vector, 32 bit signed.
  ******************************************************************************/
 void vec_mac_long_s32(int64_t *pZ, int len, const int32_t *pX,
                       const int32_t *pY)

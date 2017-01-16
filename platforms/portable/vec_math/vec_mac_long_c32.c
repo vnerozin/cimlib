@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -16,18 +16,14 @@
  * ---------------------------------------------------------------------------*/
 
 /*******************************************************************************
- *      @fn  void vec_mac_long_c32(cint64_t *pZ,
- *                                 int len,
- *                                 const cint32_t *pX,
- *                                 const cint32_t *pY)
- *   @param  pZ   Pointer to output vector, 32 bit complex
- *   @param  len  Vector length
- *   @param  pX   Pointer to input vector, 32 bit complex
- *   @param  pY   Pointer to input vector, 32 bit complex
- *  @return  -
- *   @brief  This function calculates by element complex multiply of input
- *           vectors, 32 bit complex, result with extended precision and
- *           accumulated to output vector
+ * This function calculates by element complex multiply of input vectors,
+ * 32 bit complex, result with extended precision and accumulated to output
+ * vector.
+ *
+ * @param[in,out]  pZ   Pointer to input-output vector, 32 bit complex.
+ * @param[in]      len  Vector length.
+ * @param[in]      pX   Pointer to input vector, 32 bit complex.
+ * @param[in]      pY   Pointer to input vector, 32 bit complex.
  ******************************************************************************/
 void vec_mac_long_c32(cint64_t *pZ, int len, const cint32_t *pX,
                       const cint32_t *pY)

@@ -4,6 +4,7 @@
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the MIT license. See LICENSE.md for details.
  ******************************************************************************/ 
+
 /* -----------------------------------------------------------------------------
  * Includes
  * ---------------------------------------------------------------------------*/
@@ -18,11 +19,11 @@
  * This function calculates by element multiply of input vectors, 32 bit signed,
  * result is accumulated in output vector.
  *
- * @param[out]  pZ     Pointer to output vector, 32 bit signed.
- * @param[in]   len    Vector length.
- * @param[in]   radix  Radix.
- * @param[in]   pX     Pointer to input vector, 32 bit signed.
- * @param[in]   pY     Pointer to input vector, 32 bit signed.
+ * @param[in,out]  pZ     Pointer to input-output vector, 32 bit signed.
+ * @param[in]      len    Vector length.
+ * @param[in]      radix  Radix.
+ * @param[in]      pX     Pointer to input vector, 32 bit signed.
+ * @param[in]      pY     Pointer to input vector, 32 bit signed.
  ******************************************************************************/
 void vec_mac_s32(int32_t *pZ, int len, int radix, const int32_t *pX,
                  const int32_t *pY)

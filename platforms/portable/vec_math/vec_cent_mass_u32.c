@@ -8,7 +8,6 @@
 /* -----------------------------------------------------------------------------
  * Includes
  * ---------------------------------------------------------------------------*/
-#include <stdlib.h>               /* Standard library */
 #include "cimlib.h"               /* Library header */
 
 
@@ -23,7 +22,8 @@
  * @param[in]  len    Vector length.
  * @param[in]  radix  Radix.
  *
- * @return  Index of center of mass of vector, zero based, radix is applied.
+ * @return            Index of center of mass of vector, zero based,
+ *                    radix is applied.
  ******************************************************************************/
 uint32_t vec_cent_mass_u32(const uint32_t *pX, int len, int radix)
 {

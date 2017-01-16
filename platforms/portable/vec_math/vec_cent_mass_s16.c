@@ -8,7 +8,6 @@
 /* -----------------------------------------------------------------------------
  * Includes
  * ---------------------------------------------------------------------------*/
-#include <stdlib.h>               /* Standard library */
 #include "cimlib.h"               /* Library header */
 
 
@@ -19,12 +18,12 @@
 /*******************************************************************************
  * This function calculates center of mass of vector, 16 bit signed.
  *
- * @param[in]  pX     Pointer to input vector, 16 bit signed
- * @param[in]  len    Vector length
- * @param[in]  radix  Radix
+ * @param[in]  pX     Pointer to input vector, 16 bit signed.
+ * @param[in]  len    Vector length.
+ * @param[in]  radix  Radix.
  *
  * @return            Index of center of mass of vector, zero based,
- *                    radix is applied
+ *                    radix is applied.
  ******************************************************************************/
 uint32_t vec_cent_mass_s16(const int16_t *pX, int len, int radix)
 {

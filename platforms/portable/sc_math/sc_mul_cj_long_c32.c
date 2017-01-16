@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -22,7 +22,7 @@
  * @param[in]  x  Input value, 32 bit complex.
  * @param[in]  y  Input value, 32 bit complex.
  *
- * @return  Conjugate multiply of input values, 64 bit complex.
+ * @return        Conjugate multiply of input values, 64 bit complex.
  ******************************************************************************/
 cint64_t sc_mul_cj_long_c32(cint32_t x, cint32_t y)
 {

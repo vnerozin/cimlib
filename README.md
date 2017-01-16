@@ -1,11 +1,22 @@
 # CIMLIB - Common Integer Math Library
 
-CIMLIB is a library for integer radix based math. It simplifies radix math 
-usage, especially in case of migration from floating point models or changing 
-DSP platform. Also it is easy portable to any DSP platform. 
+CIMLIB is set of primitive math functions for integer radix based math. It 
+simplifies radix math usage, especially in case of migration from floating 
+point models or changing DSP platform. Also it is easy portable to any 
+DSP platform. 
 
 Library consist from memory operation, scalar and vector functions. Most of 
-functions exists in signed and complex 16bit and 32bit versions.
+functions exists in signed and complex 16bit and 32bit versions. For easy debug 
+lot of functions exists on versions with saturation control.
+
+Function names prefixes/suffixes:
+Prefixes/suffixes|Description
+----|-----------
+mem | Memory operation function
+sc | Scalar math function 
+vec | Vector math function
+sat | Result is with saturation control
+long | Result is with extended precision 
 
 ## Building
 
@@ -55,7 +66,7 @@ For more detailed examples, see test functions in each function's source files.
 
 ## Test
 
-Each function in library have simple test. To force full test use following 
+Each function in library has simple test. To force full test use following 
 command:
 ```
 make portable test

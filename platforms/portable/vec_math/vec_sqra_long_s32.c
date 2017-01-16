@@ -6,7 +6,7 @@
  ******************************************************************************/ 
 
 /* -----------------------------------------------------------------------------
- * Include files
+ * Includes
  * ---------------------------------------------------------------------------*/
 #include "cimlib.h"               /* Library header */
 
@@ -19,7 +19,7 @@
  * This function calculates square of each element of vector, 32 bit signed,
  * result is accumulated with extended precision.
  *
- * @param[in,out]  pYAcc  Pointer to output accumulation vector,
+ * @param[in,out]  pYAcc  Pointer to input-output accumulation vector,
  *                        32 bit unsigned.
  * @param[in]      len    Vector length.
  * @param[in]      pX     Pointer to input vector, 32 bit signed.
