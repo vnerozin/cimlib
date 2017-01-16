@@ -37,7 +37,7 @@ uint32_t sc_sqr_long_c16(cint16_t x)
 #if (CIMLIB_BUILD_TEST == 1)
 
 /* Simplify macroses for fixed radix */
-#define RADIX               (15)
+#define RADIX               (12)
 #define CONST_LONG(X)       CIMLIB_CONST_U32(X, RADIX * 2)
 #define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
 
@@ -57,10 +57,10 @@ bool test_sc_sqr_long_c16(void)
         CONST_CPLX( 3.7658691406E-02, -1.3186645508E-01)
     };
     static uint32_t res[4] = {
-        CONST_LONG( 1.9998779316E+00),
-        CONST_LONG( 3.1234743074E-02),
-        CONST_LONG( 1.9999389658E+00),
-        CONST_LONG( 1.8806939013E-02)
+        CONST_LONG( 2.0000000000E+00),
+        CONST_LONG( 3.1250000000E-02),
+        CONST_LONG( 2.0000000000E+00),
+        CONST_LONG( 1.8794298172E-02)
     };
     bool flOk = true;
 

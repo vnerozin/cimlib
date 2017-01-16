@@ -39,7 +39,7 @@ uint16_t sc_sqr_c16(cint16_t x, int radix)
 #if (CIMLIB_BUILD_TEST == 1)
 
 /* Simplify macroses for fixed radix */
-#define RADIX               (15)
+#define RADIX               (12)
 #define CONST(X)            CIMLIB_CONST_U16(X, RADIX)
 #define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
 
@@ -62,7 +62,7 @@ bool test_sc_sqr_c16(void)
         CONST( 1.9998779297E+00),
         CONST( 3.1219482422E-02),
         CONST( 1.9999389648E+00),
-        CONST( 1.8798828125E-02)
+        CONST( 1.8554687500E-02)
     };
     bool flOk = true;
 
