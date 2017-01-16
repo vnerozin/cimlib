@@ -37,16 +37,6 @@ all:
 
 clean:
 	$(RM) -f build
-	
-
-astyle:
-	$(PYTHON) $(UTILS_DIR)/apply_astyle.py
-	
-	
-release_code:
-	$(PYTHON) $(UTILS_DIR)/fill_base_header.py
-	$(PYTHON) $(UTILS_DIR)/fill_src_headers.py
-	$(PYTHON) $(UTILS_DIR)/apply_astyle.py
  	
 
 ifneq ($(MAKECMDGOALS), help)
