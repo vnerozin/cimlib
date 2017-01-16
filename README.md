@@ -6,10 +6,10 @@ point models or changing DSP platform. Also it is easy portable to any
 DSP platform. 
 
 Library consist from memory operation, scalar and vector functions. Most of 
-functions exists in signed and complex 16bit and 32bit versions. For easy debug 
-lot of functions exists on versions with saturation control.
+functions exist in signed and complex 16 bit and 32 bit versions. For easy 
+debug lot of functions exist on versions with saturation control.
 
-Function names prefixes/suffixes
+Table 1 - Function names prefixes/suffixes
 
 | Prefixes/suffixes | Description                        |
 | ----------------- | ---------------------------------- |
