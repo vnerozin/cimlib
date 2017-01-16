@@ -10,13 +10,13 @@ functions exists in signed and complex 16bit and 32bit versions. For easy debug
 lot of functions exists on versions with saturation control.
 
 Function names prefixes/suffixes:
-| Prefixes/suffixes | Description
-| ----------------- | -----------
-| mem | Memory operation function
-| sc | Scalar math function 
-| vec | Vector math function
-| sat | Result is with saturation control
-| long | Result is with extended precision 
+Prefixes/suffixes | Description
+--- | ---
+mem | Memory operation function
+sc | Scalar math function 
+vec | Vector math function
+sat | Result is with saturation control
+long | Result is with extended precision 
 
 ## Building
 
