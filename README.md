@@ -9,7 +9,8 @@ Library consist from memory operation, scalar and vector functions. Most of
 functions exists in signed and complex 16bit and 32bit versions. For easy debug 
 lot of functions exists on versions with saturation control.
 
-Function names prefixes/suffixes:
+Function names prefixes/suffixes
+
 | Prefixes/suffixes | Description                        |
 | ----------------- | ---------------------------------- |
 | mem               | Memory operation function          |
