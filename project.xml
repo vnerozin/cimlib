@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<project name="CIMLIB">
+    <version>0.1.0</version>
+    <copyright>Copyright (c) 2017 Vasiliy Nerozin</copyright>
+    <astyle>-jk3A10pf --suffix=none --max-code-length=80</astyle>
+    <platforms>
+        <dir>platforms</dir>
+        <platform name="Portable platform">
+            <dir>portable</dir>
+        </platform>
+    </platforms>
+    <libraries>
+        <library name="Memory operations library">
+            <dir>mem_oper</dir>
+        </library>
+        <library name="Scalar math library">
+            <dir>sc_math</dir>
+        </library>
+        <library name="Vector math library">
+            <dir>vec_math</dir>
+        </library>
+    </libraries>
+</project>

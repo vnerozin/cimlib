@@ -1,0 +1,14 @@
+# Eclipse
+.cproject
+.project
+.pydevproject
+.settings
+
+# Build
+build
+
+# DS files
+.DS_Store
+
+# Python files
+*.pyc
