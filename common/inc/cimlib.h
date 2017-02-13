@@ -224,7 +224,11 @@ int32_t sc_min_s32(int32_t x, int32_t y);
 
 cint16_t sc_mul_c16(cint16_t x, cint16_t y, int radix);
 
+cint16_t sc_mul_c16s16(cint16_t x, int16_t y, int radix);
+
 cint32_t sc_mul_c32(cint32_t x, cint32_t y, int radix);
+
+cint32_t sc_mul_c32s32(cint32_t x, int32_t y, int radix);
 
 cint16_t sc_mul_cj_c16(cint16_t x, cint16_t y, int radix);
 
@@ -687,7 +691,9 @@ bool test_sc_max_s32(void);
 bool test_sc_min_s16(void);
 bool test_sc_min_s32(void);
 bool test_sc_mul_c16(void);
+bool test_sc_mul_c16s16(void);
 bool test_sc_mul_c32(void);
+bool test_sc_mul_c32s32(void);
 bool test_sc_mul_cj_c16(void);
 bool test_sc_mul_cj_c32(void);
 bool test_sc_mul_cj_long_c16(void);

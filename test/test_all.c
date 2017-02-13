@@ -93,7 +93,9 @@ bool test_all(const char *platform)
     TEST(sc_min_s16,         flPass);
     TEST(sc_min_s32,         flPass);
     TEST(sc_mul_c16,         flPass);
+    TEST(sc_mul_c16s16,      flPass);
     TEST(sc_mul_c32,         flPass);
+    TEST(sc_mul_c32s32,      flPass);
     TEST(sc_mul_cj_c16,      flPass);
     TEST(sc_mul_cj_c32,      flPass);
     TEST(sc_mul_cj_long_c16, flPass);
