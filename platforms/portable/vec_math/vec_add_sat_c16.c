@@ -47,7 +47,6 @@ void vec_add_sat_c16(cint16_t *pZ, int len, const cint16_t *pX,
 
 /* Simplify macroses for fixed radix */
 #define RADIX               (12)
-#define CONST(X)            CIMLIB_CONST_S16(X, RADIX)
 #define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
 
 

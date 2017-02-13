@@ -18,11 +18,10 @@
 /*******************************************************************************
  * This function performs addition of input values, 16 bit complex.
  *
- * @param[in]  x      Input value, 16 bit complex.
- * @param[in]  y      Input value, 16 bit complex.
- * @param[in]  radix  Radix
+ * @param[in]  x  Input value, 16 bit complex.
+ * @param[in]  y  Input value, 16 bit complex.
  *
- * @return            Result of addition, 16 bit complex.
+ * @return        Result of addition, 16 bit complex.
  ******************************************************************************/
 cint16_t sc_add_c16(cint16_t x, cint16_t y)
 {

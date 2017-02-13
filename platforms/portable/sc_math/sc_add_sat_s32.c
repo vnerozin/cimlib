@@ -16,19 +16,22 @@
  * ---------------------------------------------------------------------------*/
 
 /*******************************************************************************
- * This function perform addition of input values, 32 bit complex.
+ * This function performs addition of input values, 32 bit signed,
+ * result is with saturation control.
  *
- * @param[in]  x  Input value, 32 bit complex.
- * @param[in]  y  Input value, 32 bit complex.
+ * @param[in]  x  Input value, 32 bit signed.
+ * @param[in]  y  Input value, 32 bit signed.
  *
- * @return        Result of addition, 32 bit complex.
+ * @return        Result of addition, 32 bit signed.
  ******************************************************************************/
-cint32_t sc_add_c32(cint32_t x, cint32_t y)
+int32_t sc_add_sat_s32(int32_t x, int32_t y)
 {
-    cint32_t z;
+    int32_t z;
+    int64_t tmp;
 
-    z.re = x.re + y.re;
-    z.im = x.im + y.im;
+    tmp = (int64_t)x + y;
+    CIMLIB_SAT_INT(tmp, INT32_MAX, tmp);
+    z = (int32_t)tmp;
 
     return z;
 }
@@ -37,42 +40,36 @@ cint32_t sc_add_c32(cint32_t x, cint32_t y)
 #if (CIMLIB_BUILD_TEST == 1)
 
 /* Simplify macroses for fixed radix */
-#define RADIX  (24)
-#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+#define RADIX     (28)
+#define CONST(X)  CIMLIB_CONST_S32(X, RADIX)
 
 
 /*******************************************************************************
- * This function tests 'sc_add_c32' function. Returns 'true' if validation
+ * This function tests 'sc_add_sat_s32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise
  ******************************************************************************/
-bool test_sc_add_c32(void)
+bool test_sc_add_sat_s32(void)
 {
     int n;
-    cint32_t z[4];
-    static cint32_t x[4] = {
-        CONST_CPLX(2.1, 0.05),
-        CONST_CPLX(0.1, -0.05),
-        CONST_CPLX(-5.6, 3.001),
-        CONST_CPLX(3.14, 1.0)
+    int32_t z[4];
+    static int32_t x[4] = {
+        CONST(-7.1), CONST(0.1), CONST(5.6), CONST(3.14)
     };
-    static cint32_t y[4] = {
-        CONST_CPLX(-2.1, -0.05),
-        CONST_CPLX(-0.1, 0.05),
-        CONST_CPLX(5.6, -3.001),
-        CONST_CPLX(-3.14, -1.0)
+    static int32_t y[4] = {
+        CONST(-2.1), CONST(-0.1), CONST(5.6), CONST(-3.14)
     };
-    static cint32_t res[4] = {
-        {0, 0}, {0, 0}, {0, 0}, {0, 0}
+    static int32_t res[4] = {
+        INT32_MIN, 0, INT32_MAX, 0
     };
     bool flOk = true;
 
-    /* Call 'sc_add_c32' function */
+    /* Call 'sc_add_sat_s32' function */
     for(n = 0; n < 4; n++) {
-        z[n] = sc_add_c32(x[n], y[n]);
+        z[n] = sc_add_sat_s32(x[n], y[n]);
     }
 
     /* Check the correctness of the result */
-    TEST_LIBS_CHECK_RES_CPLX(z, res, 4, flOk);
+    TEST_LIBS_CHECK_RES_REAL(z, res, 4, flOk);
 
     return flOk;
 }

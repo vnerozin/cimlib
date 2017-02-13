@@ -16,66 +16,68 @@
  * ---------------------------------------------------------------------------*/
 
 /*******************************************************************************
- * This function calculates by element addition of two vectors, 32 bit complex,
+ * This function performs addition of input values, 16 bit complex,
  * result is with saturation control.
  *
- * @param[out]  pZ   Pointer to output vector, 32 bit complex.
- * @param[in]   len  Vector length.
- * @param[in]   pX   Pointer to input vector, 32 bit complex.
- * @param[in]   pY   Pointer to input vector, 32 bit complex.
+ * @param[in]  x  Input value, 16 bit complex.
+ * @param[in]  y  Input value, 16 bit complex.
+ *
+ * @return        Result of addition, 16 bit complex.
  ******************************************************************************/
-void vec_add_sat_c32(cint32_t *pZ, int len, const cint32_t *pX,
-                     const cint32_t *pY)
+cint16_t sc_add_sat_c16(cint16_t x, cint16_t y)
 {
-    int n;
-    int64_t re, im;
+    cint16_t z;
+    int32_t re, im;
 
-    for (n = 0; n < len; n++) {
-        re = (int64_t)pX[n].re + pY[n].re;
-        im = (int64_t)pX[n].im + pY[n].im;
+    re = (int32_t)x.re + y.re;
+    im = (int32_t)x.im + y.im;
 
-        CIMLIB_SAT_INT(re, INT32_MAX, re);
-        CIMLIB_SAT_INT(im, INT32_MAX, im);
+    CIMLIB_SAT_INT(re, INT16_MAX, re);
+    CIMLIB_SAT_INT(im, INT16_MAX, im);
 
-        pZ[n].re = (int32_t)re;
-        pZ[n].im = (int32_t)im;
-    }
+    z.re = (int16_t)re;
+    z.im = (int16_t)im;
+
+    return z;
 }
 
 
 #if (CIMLIB_BUILD_TEST == 1)
 
 /* Simplify macroses for fixed radix */
-#define RADIX               (28)
-#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C32(RE, IM, RADIX)
+#define RADIX               (12)
+#define CONST_CPLX(RE, IM)  CIMLIB_CONST_C16(RE, IM, RADIX)
 
 
 /*******************************************************************************
- * This function tests 'vec_add_sat_c32' function. Returns 'true' if validation
+ * This function tests 'sc_add_sat_c16' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise
  ******************************************************************************/
-bool test_vec_add_sat_c32(void)
+bool test_sc_add_sat_c16(void)
 {
-    cint32_t z[4];
-    static cint32_t x[4] = {
+    int n;
+    cint16_t z[4];
+    static cint16_t x[4] = {
         CONST_CPLX(-7.1, 0.05),
         CONST_CPLX(0.1, -0.05),
         CONST_CPLX(5.6, 3.001),
         CONST_CPLX(3.14, 1.0)
     };
-    static cint32_t y[4] = {
+    static cint16_t y[4] = {
         CONST_CPLX(-2.1, -0.05),
         CONST_CPLX(-0.1, 0.05),
         CONST_CPLX(5.6, -3.001),
         CONST_CPLX(-3.14, -1.0)
     };
-    static cint32_t res[4] = {
-        {INT32_MIN, 0}, {0, 0}, {INT32_MAX, 0}, {0, 0}
+    static cint16_t res[4] = {
+        {INT16_MIN, 0}, {0, 0}, {INT16_MAX, 0}, {0, 0}
     };
     bool flOk = true;
 
-    /* Call 'vec_add_sat_c32' function */
-    vec_add_sat_c32(z, 4, x, y);
+    /* Call 'sc_add_sat_c16' function */
+    for(n = 0; n < 4; n++) {
+        z[n] = sc_add_sat_c16(x[n], y[n]);
+    }
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_CPLX(z, res, 4, flOk);

@@ -172,6 +172,14 @@ cint16_t sc_add_c16(cint16_t x, cint16_t y);
 
 cint32_t sc_add_c32(cint32_t x, cint32_t y);
 
+cint16_t sc_add_sat_c16(cint16_t x, cint16_t y);
+
+cint32_t sc_add_sat_c32(cint32_t x, cint32_t y);
+
+int16_t sc_add_sat_s16(int16_t x, int16_t y);
+
+int32_t sc_add_sat_s32(int32_t x, int32_t y);
+
 int16_t sc_atan2_s16(int16_t y, int16_t x, int radix);
 
 int32_t sc_atan2_s32(int32_t y, int32_t x, int radix);
@@ -665,6 +673,10 @@ bool test_mem_sort_s32(void);
 /** Tests for scalar math library */
 bool test_sc_add_c16(void);
 bool test_sc_add_c32(void);
+bool test_sc_add_sat_c16(void);
+bool test_sc_add_sat_c32(void);
+bool test_sc_add_sat_s16(void);
+bool test_sc_add_sat_s32(void);
 bool test_sc_atan2_s16(void);
 bool test_sc_atan2_s32(void);
 bool test_sc_cos_s16(void);

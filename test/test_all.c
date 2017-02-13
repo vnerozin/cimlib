@@ -67,6 +67,10 @@ bool test_all(const char *platform)
 
     TEST(sc_add_c16,         flPass);
     TEST(sc_add_c32,         flPass);
+    TEST(sc_add_sat_c16,     flPass);
+    TEST(sc_add_sat_c32,     flPass);
+    TEST(sc_add_sat_s16,     flPass);
+    TEST(sc_add_sat_s32,     flPass);
     TEST(sc_atan2_s16,       flPass);
     TEST(sc_atan2_s32,       flPass);
     TEST(sc_cos_s16,         flPass);
