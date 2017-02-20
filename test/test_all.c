@@ -90,6 +90,10 @@ bool test_all(const char *platform)
     TEST(sc_log2_int_u64,    flPass);
     TEST(sc_log2_u16,        flPass);
     TEST(sc_log2_u32,        flPass);
+    TEST(sc_mac_c16,         flPass);
+    TEST(sc_mac_c32,         flPass);
+    TEST(sc_mac_s16,         flPass);
+    TEST(sc_mac_s32,         flPass);
     TEST(sc_mag_c16,         flPass);
     TEST(sc_mag_c32,         flPass);
     TEST(sc_max_s16,         flPass);

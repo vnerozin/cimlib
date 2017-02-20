@@ -218,6 +218,14 @@ int16_t sc_log2_u16(uint16_t x, int radix);
 
 int32_t sc_log2_u32(uint32_t x, int radix);
 
+cint16_t sc_mac_c16(cint16_t x, cint16_t y, cint16_t acc, int radix);
+
+cint32_t sc_mac_c32(cint32_t x, cint32_t y, cint32_t acc, int radix);
+
+int16_t sc_mac_s16(int16_t x, int16_t y, int16_t acc, int radix);
+
+int32_t sc_mac_s32(int32_t x, int32_t y, int32_t acc, int radix);
+
 uint16_t sc_mag_c16(cint16_t x);
 
 uint32_t sc_mag_c32(cint32_t x);
@@ -696,6 +704,10 @@ bool test_sc_log2_int_u32(void);
 bool test_sc_log2_int_u64(void);
 bool test_sc_log2_u16(void);
 bool test_sc_log2_u32(void);
+bool test_sc_mac_c16(void);
+bool test_sc_mac_c32(void);
+bool test_sc_mac_s16(void);
+bool test_sc_mac_s32(void);
 bool test_sc_mag_c16(void);
 bool test_sc_mag_c32(void);
 bool test_sc_max_s16(void);
