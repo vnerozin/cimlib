@@ -226,6 +226,18 @@ cint16_t sc_mac_cj_c16(cint16_t x, cint16_t y, cint16_t acc, int radix);
 
 cint32_t sc_mac_cj_c32(cint32_t x, cint32_t y, cint32_t acc, int radix);
 
+cint32_t sc_mac_cj_long_c16(cint16_t x, cint16_t y, cint32_t acc);
+
+cint64_t sc_mac_cj_long_c32(cint32_t x, cint32_t y, cint64_t acc);
+
+cint32_t sc_mac_long_c16(cint16_t x, cint16_t y, cint32_t acc);
+
+cint64_t sc_mac_long_c32(cint32_t x, cint32_t y, cint64_t acc);
+
+int32_t sc_mac_long_s16(int16_t x, int16_t y, int32_t acc);
+
+int64_t sc_mac_long_s32(int32_t x, int32_t y, int64_t acc);
+
 int16_t sc_mac_s16(int16_t x, int16_t y, int16_t acc, int radix);
 
 int32_t sc_mac_s32(int32_t x, int32_t y, int32_t acc, int radix);
@@ -720,6 +732,12 @@ bool test_sc_mac_c16(void);
 bool test_sc_mac_c32(void);
 bool test_sc_mac_cj_c16(void);
 bool test_sc_mac_cj_c32(void);
+bool test_sc_mac_cj_long_c16(void);
+bool test_sc_mac_cj_long_c32(void);
+bool test_sc_mac_long_c16(void);
+bool test_sc_mac_long_c32(void);
+bool test_sc_mac_long_s16(void);
+bool test_sc_mac_long_s32(void);
 bool test_sc_mac_s16(void);
 bool test_sc_mac_s32(void);
 bool test_sc_mac_sat_c16(void);

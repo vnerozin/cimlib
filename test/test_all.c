@@ -94,6 +94,12 @@ bool test_all(const char *platform)
     TEST(sc_mac_c32,         flPass);
     TEST(sc_mac_cj_c16,      flPass);
     TEST(sc_mac_cj_c32,      flPass);
+    TEST(sc_mac_cj_long_c16, flPass);
+    TEST(sc_mac_cj_long_c32, flPass);
+    TEST(sc_mac_long_c16,    flPass);
+    TEST(sc_mac_long_c32,    flPass);
+    TEST(sc_mac_long_s16,    flPass);
+    TEST(sc_mac_long_s32,    flPass);
     TEST(sc_mac_s16,         flPass);
     TEST(sc_mac_s32,         flPass);
     TEST(sc_mac_sat_c16,     flPass);

@@ -17,7 +17,7 @@
 
 /*******************************************************************************
  * This function calculates by element multiply of input vectors, 16 bit signed,
- * result with extended precision and accumulated to output vector.
+ * result is with extended precision and accumulated to output vector.
  *
  * @param[in,out]  pZ   Pointer to input-output vector, 16 bit signed.
  * @param[in]      len  Vector length.
