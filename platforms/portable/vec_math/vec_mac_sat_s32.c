@@ -33,8 +33,9 @@ void vec_mac_sat_s32(int32_t *pZ, int len, int radix, const int32_t *pX,
 
     for (n = 0; n < len; n++) {
         tmp = ((int64_t)pX[n] * pY[n]) >> radix;
+        tmp += pZ[n];
         CIMLIB_SAT_INT(tmp, INT32_MAX, tmp);
-        pZ[n] += (int32_t)tmp;
+        pZ[n] = (int32_t)tmp;
     }
 }
 
@@ -59,13 +60,13 @@ bool test_vec_mac_sat_s32(void)
         CONST(63.9), CONST(3.3), CONST(1.1), CONST(-63.9)
     };
     int32_t z[4] = {
-        INT32_MIN + 1,
+        CONST(0.0),
         CONST(-1.3200000763E+01),
         CONST(-2.2000007629E+00),
-        INT32_MAX
+        CONST(0.0)
     };
     static int32_t res[4] = {
-        CONST(0.0), CONST(0.0), CONST(0.0), -1
+        INT32_MAX, CONST(0.0), CONST(0.0), INT32_MIN
     };
     bool flOk = true;
 

@@ -37,10 +37,12 @@ void vec_mac_sat_c16(cint16_t *pZ, int len, int radix, const cint16_t *pX,
         im = (int32_t)pX[n].im * pY[n].re + (int32_t)pX[n].re * pY[n].im;
         re >>= radix;
         im >>= radix;
+        re += pZ[n].re;
+        im += pZ[n].im;
         CIMLIB_SAT_INT(re, INT16_MAX, re);
         CIMLIB_SAT_INT(im, INT16_MAX, im);
-        pZ[n].re += (int16_t)re;
-        pZ[n].im += (int16_t)im;
+        pZ[n].re = (int16_t)re;
+        pZ[n].im = (int16_t)im;
     }
 }
 
@@ -72,16 +74,16 @@ bool test_vec_mac_sat_c16(void)
         CONST_CPLX(-0.33, -1.9),
     };
     cint16_t z[4] = {
-        {CONST(0.0), INT16_MIN + 1},
+        CONST_CPLX(0.0, 0.0),
         CONST_CPLX(-4.9499511719E-01,  4.5361328125E-01),
         CONST_CPLX( 4.9505615234E-01, -4.5355224609E-01),
-        {CONST(0.0), INT16_MAX}
+        CONST_CPLX(0.0, 0.0)
     };
     static cint16_t res[4] = {
+        {CONST(0.0), INT16_MAX},
         CONST_CPLX(0.0, 0.0),
         CONST_CPLX(0.0, 0.0),
-        CONST_CPLX(0.0, 0.0),
-        {CONST(0.0), -1}
+        {CONST(0.0), INT16_MIN}
     };
     bool flOk = true;
 

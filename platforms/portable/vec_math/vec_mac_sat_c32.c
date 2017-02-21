@@ -37,10 +37,12 @@ void vec_mac_sat_c32(cint32_t *pZ, int len, int radix, const cint32_t *pX,
         im = (int64_t)pX[n].im * pY[n].re + (int64_t)pX[n].re * pY[n].im;
         re >>= radix;
         im >>= radix;
+        re += pZ[n].re;
+        im += pZ[n].im;
         CIMLIB_SAT_INT(re, INT32_MAX, re);
         CIMLIB_SAT_INT(im, INT32_MAX, im);
-        pZ[n].re += (int32_t)re;
-        pZ[n].im += (int32_t)im;
+        pZ[n].re = (int32_t)re;
+        pZ[n].im = (int32_t)im;
     }
 }
 
@@ -63,25 +65,25 @@ bool test_vec_mac_sat_c32(void)
         CONST_CPLX(7.9, 0.33),
         CONST_CPLX(0.75, 0.33),
         CONST_CPLX(0.75, 0.33),
-        CONST_CPLX(7.9, 0.33),
+        CONST_CPLX(7.9, 0.33)
     };
     static cint32_t y[4] = {
         CONST_CPLX(0.33, 7.9),
         CONST_CPLX(0.33, -0.75),
         CONST_CPLX(-0.33, 0.75),
-        CONST_CPLX(-0.33, -7.9),
+        CONST_CPLX(-0.33, -7.9)
     };
     cint32_t z[4] = {
-        {CONST(0.0), INT32_MIN + 1},
+        CONST_CPLX(0.0, 0.0),
         CONST_CPLX(-4.9499999732E-01,  4.5360000432E-01),
         CONST_CPLX( 4.9499999732E-01, -4.5360000059E-01),
-        {CONST(0.0), INT32_MAX}
+        CONST_CPLX(0.0, 0.0)
     };
     static cint32_t res[4] = {
+        {CONST(0.0), INT32_MAX},
         CONST_CPLX(0.0, 0.0),
         CONST_CPLX(0.0, 0.0),
-        CONST_CPLX(0.0, 0.0),
-        {CONST(0.0), -1}
+        {CONST(0.0), INT32_MIN}
     };
     bool flOk = true;
 
