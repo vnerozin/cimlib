@@ -505,6 +505,18 @@ uint16_t vec_min_sqr_s16(int *pIdxMin, const int16_t *pX, int len, int radix);
 
 uint32_t vec_min_sqr_s32(int *pIdxMin, const int32_t *pX, int len, int radix);
 
+uint16_t vec_min_sqr_sat_c16(int *pIdxMin, const cint16_t *pX, int len,
+                             int radix);
+
+uint32_t vec_min_sqr_sat_c32(int *pIdxMin, const cint32_t *pX, int len,
+                             int radix);
+
+uint16_t vec_min_sqr_sat_s16(int *pIdxMin, const int16_t *pX, int len,
+                             int radix);
+
+uint32_t vec_min_sqr_sat_s32(int *pIdxMin, const int32_t *pX, int len,
+                             int radix);
+
 void vec_mul_c16(cint16_t *pZ, int len, int radix, const cint16_t *pX,
                  const cint16_t *pY);
 
@@ -882,6 +894,10 @@ bool test_vec_min_sqr_c16(void);
 bool test_vec_min_sqr_c32(void);
 bool test_vec_min_sqr_s16(void);
 bool test_vec_min_sqr_s32(void);
+bool test_vec_min_sqr_sat_c16(void);
+bool test_vec_min_sqr_sat_c32(void);
+bool test_vec_min_sqr_sat_s16(void);
+bool test_vec_min_sqr_sat_s32(void);
 bool test_vec_mul_c16(void);
 bool test_vec_mul_c16s16(void);
 bool test_vec_mul_c32(void);
