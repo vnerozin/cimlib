@@ -619,6 +619,18 @@ void vec_sub_s16(int16_t *pZ, int len, const int16_t *pX, const int16_t *pY);
 
 void vec_sub_s32(int32_t *pZ, int len, const int32_t *pX, const int32_t *pY);
 
+void vec_sub_sat_c16(cint16_t *pZ, int len, const cint16_t *pX,
+                     const cint16_t *pY);
+
+void vec_sub_sat_c32(cint32_t *pZ, int len, const cint32_t *pX,
+                     const cint32_t *pY);
+
+void vec_sub_sat_s16(int16_t *pZ, int len, const int16_t *pX,
+                     const int16_t *pY);
+
+void vec_sub_sat_s32(int32_t *pZ, int len, const int32_t *pX,
+                     const int32_t *pY);
+
 cint32_t vec_sum_c16(const cint16_t *pX, int len);
 
 cint64_t vec_sum_c32(const cint32_t *pX, int len);
@@ -900,6 +912,10 @@ bool test_vec_sub_c16(void);
 bool test_vec_sub_c32(void);
 bool test_vec_sub_s16(void);
 bool test_vec_sub_s32(void);
+bool test_vec_sub_sat_c16(void);
+bool test_vec_sub_sat_c32(void);
+bool test_vec_sub_sat_s16(void);
+bool test_vec_sub_sat_s32(void);
 bool test_vec_sum_c16(void);
 bool test_vec_sum_c32(void);
 bool test_vec_sum_diff_c16(void);

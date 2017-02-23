@@ -31,7 +31,7 @@ void vec_add_const_sat_s16(int16_t *pY, int len, const int16_t *pX,
     int32_t tmp;
 
     for (n = 0; n < len; n++) {
-        tmp = pX[n] + cnst;
+        tmp = (int32_t)pX[n] + cnst;
         CIMLIB_SAT_INT(tmp, INT16_MAX, tmp);
         pY[n] = (int16_t)tmp;
     }

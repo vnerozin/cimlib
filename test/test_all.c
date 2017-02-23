@@ -263,6 +263,10 @@ bool test_all(const char *platform)
     TEST(vec_sub_c32,           flPass);
     TEST(vec_sub_s16,           flPass);
     TEST(vec_sub_s32,           flPass);
+    TEST(vec_sub_sat_c16,       flPass);
+    TEST(vec_sub_sat_c32,       flPass);
+    TEST(vec_sub_sat_s16,       flPass);
+    TEST(vec_sub_sat_s32,       flPass);
     TEST(vec_sum_c16,           flPass);
     TEST(vec_sum_c32,           flPass);
     TEST(vec_sum_diff_c16,      flPass);
