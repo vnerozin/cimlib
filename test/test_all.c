@@ -189,6 +189,8 @@ bool test_all(const char *platform)
     TEST(vec_mac_cj_c32,        flPass);
     TEST(vec_mac_cj_long_c16,   flPass);
     TEST(vec_mac_cj_long_c32,   flPass);
+    TEST(vec_mac_cj_sat_c16,    flPass);
+    TEST(vec_mac_cj_sat_c32,    flPass);
     TEST(vec_mac_long_c16,      flPass);
     TEST(vec_mac_long_c32,      flPass);
     TEST(vec_mac_long_s16,      flPass);
@@ -213,6 +215,10 @@ bool test_all(const char *platform)
     TEST(vec_max_sqr_sat_s32,   flPass);
     TEST(vec_min_s16,           flPass);
     TEST(vec_min_s32,           flPass);
+    TEST(vec_min_sqr_c16,       flPass);
+    TEST(vec_min_sqr_c32,       flPass);
+    TEST(vec_min_sqr_s16,       flPass);
+    TEST(vec_min_sqr_s32,       flPass);
     TEST(vec_mul_c16,           flPass);
     TEST(vec_mul_c16s16,        flPass);
     TEST(vec_mul_c32,           flPass);
