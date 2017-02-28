@@ -151,6 +151,15 @@ typedef struct {
  * Exported functions
  * ---------------------------------------------------------------------------*/
 
+/** Frame math library */
+
+int16_t frm_ema_s16(int16_t *pX, int len, int16_t acc, int16_t alpha,
+                    int radix);
+
+int32_t frm_ema_s32(int32_t *pX, int len, int32_t acc, int32_t alpha,
+                    int radix);
+
+
 /** Memory operations library */
 
 int16_t mem_kth_min_s16(int16_t *pX, int len, int k);
@@ -731,6 +740,12 @@ uint64_t vec_sum_sqr_s32(const int32_t *pX, int len, int radix);
 
 
 #if (CIMLIB_BUILD_TEST == 1)
+
+/** Tests for scalar math library */
+bool test_frm_ema_s16(void);
+bool test_frm_ema_s32(void);
+
+
 /** Tests for memory operations library */
 bool test_mem_kth_min_s16(void);
 bool test_mem_kth_min_s32(void);

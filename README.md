@@ -5,8 +5,8 @@ simplifies radix math usage, especially in case of migration from floating
 point models or changing DSP platform. Also it is easy portable to any 
 DSP platform. 
 
-Library consist from memory operation, scalar and vector functions. Most of 
-functions exist in signed and complex 16 bit and 32 bit versions. For easy 
+Library consist from memory operation, scalar, vector and frame functions. Most 
+of functions exist in signed and complex 16 bit and 32 bit versions. For easy 
 debug lot of functions are implemented with saturation control.
 
 Table 1 - Function names prefixes/suffixes
@@ -14,6 +14,7 @@ Table 1 - Function names prefixes/suffixes
 | Prefixes/suffixes | Description                        |
 | ----------------- | ---------------------------------- |
 | mem               | Memory operation function          |
+| frm               | Frame math function                |
 | sc                | Scalar math function               |
 | vec               | Vector math function               |
 | sat               | Result is with saturation control  |

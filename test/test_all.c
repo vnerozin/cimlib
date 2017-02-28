@@ -40,18 +40,24 @@
  * ---------------------------------------------------------------------------*/
 
 /*******************************************************************************
- * All libraries test
+ * All libraries test.
  *
- * @param[in]  platform  platform name, string
+ * @param[in]  platform  Platform name, string.
  *
  * @return               All libraries test status, 'true' - passed,
- *                       'false' - otherwise
+ *                       'false' - otherwise.
  ******************************************************************************/
 bool test_all(const char *platform)
 {
     bool flPass = true;
 
     printf("\nTest '%s' platform libraries:\n", platform);
+
+    printf("\nTest frame math library:\n");
+
+    TEST(frm_ema_s16, flPass);
+    TEST(frm_ema_s32, flPass);
+
 
     printf("\nTest memory operations library:\n");
 
@@ -321,7 +327,7 @@ bool test_all(const char *platform)
 
 #if (CIMLIB_BUILD_TEST_STANDALONE == 1)
 /*******************************************************************************
- * Main function for standalone test
+ * Main function for standalone test.
  ******************************************************************************/
 int main(int argc, char *argv[])
 {

@@ -8,6 +8,7 @@
 
 # Source files
 C_SRC_LIB = \
+	$(wildcard frm_math/*.c) \
 	$(wildcard mem_oper/*.c) \
 	$(wildcard sc_math/*.c) \
 	$(wildcard vec_math/*.c)

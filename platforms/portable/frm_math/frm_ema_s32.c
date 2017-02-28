@@ -8,6 +8,7 @@
 /* -----------------------------------------------------------------------------
  * Includes
  * ---------------------------------------------------------------------------*/
+#include <string.h>
 #include "cimlib.h"               /* Library header */
 
 
@@ -16,19 +17,21 @@
  * ---------------------------------------------------------------------------*/
 
 /*******************************************************************************
- * This function perform EMA (Exponential Moving Average) of input value,
- * 16 bit signed. Use 'CIMLIB_EMA_TIME_2_ALPHA_S32' macro to convert EMA time
- * constant into alpha.
+ * This function perform EMA (Exponential Moving Average) of vector,
+ * frame based, 32 bit signed. Use 'CIMLIB_EMA_TIME_2_ALPHA_S32' macro
+ * to convert EMA time constant into alpha.
  *
- * @param[in]  acc    Accumulator (previous EMA), 32 bit signed.
- * @param[in]  x      New value, 32 bit signed.
- * @param[in]  alpha  Alpha, [0..1.0], 32 bit signed.
- * @param[in]  radix  Radix.
+ * @param[in,out]  pX     Pointer to input/output vector, 32 bit signed.
+ * @param[in]      len    Vector length.
+ * @param[in]      acc    Accumulator (previous EMA), 32 bit signed.
+ * @param[in]      alpha  Alpha, [0..1.0], 32 bit signed.
+ * @param[in]      radix  Radix.
  *
- * @return            New EMA (accumulator), 32 bit signed.
+ * @return                New EMA (accumulator), 32 bit signed.
  ******************************************************************************/
-int32_t sc_ema_s32(int32_t acc, int32_t x, int32_t alpha, int radix)
+int32_t frm_ema_s32(int32_t *pX, int len, int32_t acc, int32_t alpha, int radix)
 {
+    int n;
     int64_t tmp;
     int32_t rnd = 0;
 
@@ -38,8 +41,11 @@ int32_t sc_ema_s32(int32_t acc, int32_t x, int32_t alpha, int radix)
     }
 
     /* EMA */
-    tmp = (int64_t)alpha * (x - acc);
-    acc += (int32_t)((tmp + rnd) >> radix);
+    for (n = 0; n < len; n++) {
+        tmp = (int64_t)alpha * (pX[n] - acc);
+        acc += (int32_t)((tmp + rnd) >> radix);
+        pX[n] = acc;
+    }
 
     return acc;
 }
@@ -55,29 +61,26 @@ int32_t sc_ema_s32(int32_t acc, int32_t x, int32_t alpha, int radix)
 
 
 /*******************************************************************************
- * This function tests 'sc_ema_s32' function. Returns 'true' if validation
+ * This function tests 'frm_ema_s32' function. Returns 'true' if validation
  * is successfully done, 'false' - otherwise.
  ******************************************************************************/
-bool test_sc_ema_s32(void)
+bool test_frm_ema_s32(void)
 {
-    int n;
     int32_t z[4];
-    static int32_t x = CONST(0.2);
     static int32_t alpha = EMA_TIME_2_ALPHA(1.0, 20.0);
     static int32_t res[4] = {
-        CONST(1.0000000000E+00),
-        CONST(9.5999997854E-01),
-        CONST(9.2199999094E-01),
-        CONST(8.8589996099E-01)
+        CONST( 9.4999998808E-01),
+        CONST( 9.0249997377E-01),
+        CONST( 8.5737496614E-01),
+        CONST( 8.1450623274E-01)
     };
     bool flOk = true;
 
-    /* Call 'sc_ema_s32' function */
-    z[0] = CONST(1.0);
+    /* Reset output vector */
+    (void)memset(z, 0, 4 * sizeof(int32_t));
 
-    for(n = 1; n < 4; n++) {
-        z[n] = sc_ema_s32(z[n - 1], x, alpha, RADIX);
-    }
+    /* Call 'sc_ema_s32' function */
+    (void)frm_ema_s32(z, 4, CONST(1.0), alpha, RADIX);
 
     /* Check the correctness of the result */
     TEST_LIBS_CHECK_RES_REAL(z, res, 4, flOk);
