@@ -2,7 +2,7 @@
 
 CIMLIB is set of primitive math functions for integer radix based math. It 
 simplifies radix math usage, especially in case of migration from floating 
-point models or changing DSP platform. Also it is easy portable to any 
+point models or changing DSP platform. CIMLIB is easy portable to any 
 DSP platform. 
 
 Library consist from memory operation, scalar, vector and frame functions. Most 
@@ -73,6 +73,15 @@ command:
 ```
 make portable test
 ```
+
+## Examples
+
+See **examples** folder for examples.
+ 
+Available examples:
+* **accel_scalar** - estimation of accelerometer total acceleration and roll, 
+                     pitch and heave angles; 
+
 
 ## Author & Copyright
 

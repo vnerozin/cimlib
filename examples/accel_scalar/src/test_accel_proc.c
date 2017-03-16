@@ -40,9 +40,9 @@
 int main(int argc, char** argv)
 {
     int n;
-    int32_t lev_vibr;
     FILE *file_csv;
     char line_csv[128];
+    int32_t lev_accel;
     accel_angles_t angles;
     accel_sample_t sample;
     accel_proc_t accel_proc;
@@ -77,14 +77,14 @@ int main(int argc, char** argv)
         /* Process sample */
         accel_proc_process(&accel_proc, &sample, 1);
 
-        /* Get force and angles */
-        lev_vibr = accel_proc_get_lev_accel(&accel_proc);
+        /* Get total acceleration level and angles */
+        lev_accel = accel_proc_get_lev_accel(&accel_proc);
         accel_proc_get_pitch_roll_heave(&accel_proc, &angles);
 
         /* Print results */
         printf("| %6d | %11.8f | %10.1f | %9.1f | %10.1f |\n",
             cnt_samples,
-            TO_DOUBLE(lev_vibr),
+            TO_DOUBLE(lev_accel),
             180.0 * TO_DOUBLE(angles.pitch),
             180.0 * TO_DOUBLE(angles.roll),
             180.0 * TO_DOUBLE(angles.heave));

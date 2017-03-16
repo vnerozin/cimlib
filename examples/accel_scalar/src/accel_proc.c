@@ -81,8 +81,6 @@ void accel_proc_process(accel_proc_t *states, accel_sample_t *samples,
     for (n = 0;  n < len; n++) {
 
         /* Estimate total acceleration level */
-
-        /* Use force value to estimate vibrations level */
         lev_vibr = (int32_t)sc_sqrt_u64(sc_sqr_long_s32(samples[n].x) +
                                         sc_sqr_long_s32(samples[n].y) +
                                         sc_sqr_long_s32(samples[n].z));
@@ -119,7 +117,7 @@ void accel_proc_process(accel_proc_t *states, accel_sample_t *samples,
                            ALPHA_FILT_ACCEL, RADIX);
         }
 
-        /* Update initialisation samples count-down counter*/
+        /* Update initialisation samples count-down counter */
         if (states->cnt_init_samples > 0) {
             states->cnt_init_samples--;
         }
