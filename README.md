@@ -80,7 +80,7 @@ See **examples** folder for examples.
  
 Available examples:
 * **accel_scalar** - estimation of accelerometer total acceleration and roll, 
-                     pitch and heave angles; 
+                     pitch and heave angles using scalar math library; 
 
 
 ## Author & Copyright
