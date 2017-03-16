@@ -74,28 +74,28 @@ void accel_proc_process(accel_proc_t *states, accel_sample_t *samples,
                             int len)
 {
     int n;
-    int32_t lev_vibr;
+    int32_t lev_accel;
 
 
     /* Process all samples */
     for (n = 0;  n < len; n++) {
 
         /* Estimate total acceleration level */
-        lev_vibr = (int32_t)sc_sqrt_u64(sc_sqr_long_s32(samples[n].x) +
+        lev_accel = (int32_t)sc_sqrt_u64(sc_sqr_long_s32(samples[n].x) +
                                         sc_sqr_long_s32(samples[n].y) +
                                         sc_sqr_long_s32(samples[n].z));
 
         /* Exclude gravity */
-        lev_vibr = abs(lev_vibr - CONST(1.0));
+        lev_accel = abs(lev_accel - CONST(1.0));
 
         /* Average result using EMA */
         if (states->cnt_init_samples == NR_INIT_SAMPLES) {
             /* Initialise value */
-            states->lev_accel = lev_vibr;
+            states->lev_accel = lev_accel;
         } else {
             /* Average */
             states->lev_accel =
-                sc_ema_s32(states->lev_accel, lev_vibr, ALPHA_LEV_VIBR, RADIX);
+                sc_ema_s32(states->lev_accel, lev_accel, ALPHA_LEV_VIBR, RADIX);
         }
 
         /* Filter accelerometer axis data, using EMA */
