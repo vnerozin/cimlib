@@ -62,9 +62,9 @@ int main(int argc, char** argv)
         fgets(line_csv, sizeof(line_csv), file_csv);
     }
 
-    printf("--------------------------------------------------------------\n");
-    printf("| Sample | Force, m/s2 | Pitch, deg | Roll, deg | Heave, deg |\n");
-    printf("--------------------------------------------------------------\n");
+    printf("---------------------------------------------------------------\n");
+    printf("| Sample | Accel., m/s2 | Pitch, deg | Roll, deg | Heave, deg |\n");
+    printf("---------------------------------------------------------------\n");
 
     /* Load accelerometer data from file.
      * [X, Y, Z] columns [2, 3, 4] */
@@ -82,7 +82,7 @@ int main(int argc, char** argv)
         accel_proc_get_pitch_roll_heave(&accel_proc, &angles);
 
         /* Print results */
-        printf("| %6d | %11.8f | %10.1f | %9.1f | %10.1f |\n",
+        printf("| %6d | %12.8f | %10.1f | %9.1f | %10.1f |\n",
             cnt_samples,
             TO_DOUBLE(lev_accel),
             180.0 * TO_DOUBLE(angles.pitch),
@@ -93,7 +93,7 @@ int main(int argc, char** argv)
         cnt_samples++;
     }
 
-    printf("--------------------------------------------------------------\n");
+    printf("---------------------------------------------------------------\n");
 
     return 0;
 }
