@@ -22,15 +22,15 @@
 /* Accelerometer data sample rate, in Hz */
 #define ACCEL_FREQS  (32.0)
 
-/* Vibrations level average interval, in seconds */
-#define ACCEL_LEN_VIB_AVER  (2.0)
+/* Total acceleration average interval, in seconds */
+#define ACCEL_LEN_LEV_ACCEL  (2.0)
 
 /* Accelerometer filter for angles estimation length, in s */
 #define ACCEL_LEN_FILT_ANGLES  (0.5)
 
-/* Alpha for vibration level */
-#define ALPHA_LEV_VIBR  \
-    (EMA_TIME_2_ALPHA(ACCEL_LEN_VIB_AVER, ACCEL_FREQS))
+/* Alpha for total acceleration level */
+#define ALPHA_LEV_ACCEL  \
+    (EMA_TIME_2_ALPHA(ACCEL_LEN_LEV_ACCEL, ACCEL_FREQS))
 
 /* Alpha for accelerometer filter */
 #define ALPHA_FILT_ACCEL \
@@ -63,7 +63,7 @@ void accel_proc_init(accel_proc_t *states)
  * Process accelerometer data.
  *
  * Algorithms:
- *     * vibrations level estimation;
+ *     * total acceleration level estimation;
  *     * pitch, roll and heave estimation;
  *
  * @param[in]  states   Pointer to states structure.
@@ -95,7 +95,7 @@ void accel_proc_process(accel_proc_t *states, accel_sample_t *samples,
         } else {
             /* Average */
             states->lev_accel =
-                sc_ema_s32(states->lev_accel, lev_accel, ALPHA_LEV_VIBR, RADIX);
+                sc_ema_s32(states->lev_accel, lev_accel, ALPHA_LEV_ACCEL, RADIX);
         }
 
         /* Filter accelerometer axis data, using EMA */
