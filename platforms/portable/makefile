@@ -15,7 +15,7 @@ help:
 ifneq ($(MAKECMDGOALS), help)
 
 #==========================================================
-# Includes	
+# Includes
 #==========================================================
 include sources.mk
 include ../../common.mk
@@ -34,9 +34,9 @@ OBJS_DEBUG = $(addprefix $(DEBUG_DIR)/, $(OBJS_LIB))
 OBJS_RELEASE = $(addprefix $(RELEASE_DIR)/, $(OBJS_LIB))
 OBJS_TEST_LIB = $(addprefix $(TEST_DIR)/, $(OBJS_TEST))
 
-	
+
 #==========================================================
-# Compiler and linker parameters	
+# Compiler and linker parameters
 #==========================================================
 
 # Compiler
@@ -52,6 +52,7 @@ CFLAGS_RELEASE = -std=c99 -Wall -Wextra -pedantic -Werror -g -O3
 #==========================================================
 # Targets
 #==========================================================
+
 .PHONY: all clean debug release test
 
 
@@ -87,7 +88,7 @@ $(RELEASE_DIR)/%.o: %.c
 
 test_build: $(OBJS_TEST_LIB)
 	$(CC) $(OBJS_TEST_LIB) $(OBJS_RELEASE) -o $(TEST_DIR)/$(PLATFORM)
-	
+
 $(TEST_DIR)/%.o: %.c
 	$(MKDIR) $(dir $@)
 	$(CC) -DCIMLIB_BUILD_TEST_STANDALONE=1 -DCIMLIB_BUILD_TEST=1 \
@@ -95,7 +96,7 @@ $(TEST_DIR)/%.o: %.c
 	
 test_exec:
 	./$(TEST_DIR)/$(PLATFORM) $(PLATFORM)
-		
+
 
 clean:
 	$(RM) $(DEBUG_DIR) $(RELEASE_DIR) $(TEST_DIR)

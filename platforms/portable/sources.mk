@@ -13,12 +13,12 @@ C_SRC_LIB = \
 	$(wildcard sc_math/*.c) \
 	$(wildcard vec_math/*.c)
 
-# Include directories	
+# Include directories
 INCLUDES_LIB = \
 	-I ../../common/inc \
 	-I ../../test/inc
 	
-# Objects 
+# Objects
 OBJS_LIB = $(C_SRC_LIB:.c=.o)
 
 
@@ -30,9 +30,9 @@ OBJS_LIB = $(C_SRC_LIB:.c=.o)
 C_SRC_TEST = \
 	$(wildcard ../../test/*.c)
 
-# Include directories	
+# Include directories
 INCLUDES_TEST = \
 	-I ../../test/inc \
 
-# Objects 
+# Objects
 OBJS_TEST = $(C_SRC_TEST:.c=.o)

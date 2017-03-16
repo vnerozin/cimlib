@@ -26,7 +26,7 @@
  * ---------------------------------------------------------------------------*/
 
 /*******************************************************************************
- * This function calculates squared arctangent of relation 'y' to 'x'
+ * This function calculates arctangent of relation 'y' to 'x'
  * normalised by 'pi', 16 bit signed.
  *
  * Reference: Performing efficient arctangent approximation
@@ -37,7 +37,7 @@
  * @param[in]  y      Input value, 16 bit signed.
  * @param[in]  radix  Radix.
  *
- * @return            Squared arctangent of relation 'y' to 'x' normalised
+ * @return            Arctangent of relation 'y' to 'x' normalised
  *                    by 'pi', 16 bit signed.
  ******************************************************************************/
 int16_t sc_atan2_s16(int16_t y, int16_t x, int radix)
@@ -81,15 +81,15 @@ int16_t sc_atan2_s16(int16_t y, int16_t x, int radix)
                 arctantent = 0;
             }
 
-            if (x > 0) {
+            if (y > 0) {
                 /* Octants: 2, 3 */
                 arctantent = one / 2 - arctantent;
             } else {
                 /* Octants: 6, 7 */
-                if (x < 0) {
+                if (y < 0) {
                     arctantent = -one / 2 - arctantent;
                 } else {
-                    if (y > 0) {
+                    if (x > 0) {
                         arctantent = one / 2;
                     } else {
                         arctantent = -one / 2;
@@ -112,76 +112,58 @@ int16_t sc_atan2_s16(int16_t y, int16_t x, int radix)
 bool test_sc_atan2_s16(void)
 {
     int n;
-    int16_t z[36];
-    static const int16_t x[36] = {
-        CONST(-1.0000000000E+00), CONST(-9.3725585938E-01),
-        CONST(-8.7500000000E-01), CONST(-8.1250000000E-01),
-        CONST(-7.5000000000E-01), CONST(-6.8725585938E-01),
-        CONST(-6.2500000000E-01), CONST(-5.6250000000E-01),
-        CONST(-5.0000000000E-01), CONST(-4.3750000000E-01),
-        CONST(-3.7500000000E-01), CONST(-3.1250000000E-01),
-        CONST(-2.5000000000E-01), CONST(-1.8750000000E-01),
-        CONST(-1.2500000000E-01), CONST(-6.2500000000E-02),
-        CONST( 0.0000000000E+00), CONST( 6.2500000000E-02),
-        CONST( 1.2500000000E-01), CONST( 1.8750000000E-01),
-        CONST( 2.5000000000E-01), CONST( 3.1250000000E-01),
-        CONST( 3.7500000000E-01), CONST( 4.3750000000E-01),
-        CONST( 5.0000000000E-01), CONST( 5.6250000000E-01),
-        CONST( 6.2500000000E-01), CONST( 6.8725585938E-01),
-        CONST( 7.5000000000E-01), CONST( 8.1250000000E-01),
-        CONST( 8.7500000000E-01), CONST( 9.3725585938E-01),
-        CONST( 0.0000000000E+00), CONST( 0.0000000000E+00),
-        CONST( 1.0000000000E+00), CONST(-1.0000000000E+00)
-    };
-    static const int16_t y[36] = {
-        CONST( 0.0000000000E+00), CONST(-1.9458007812E-01),
-        CONST(-3.8208007812E-01), CONST(-5.5590820312E-01),
-        CONST(-7.0776367188E-01), CONST(-8.3251953125E-01),
-        CONST(-9.2431640625E-01), CONST(-9.8095703125E-01),
-        CONST(-1.0000000000E+00), CONST(-9.8095703125E-01),
-        CONST(-9.2431640625E-01), CONST(-8.3227539062E-01),
-        CONST(-7.0776367188E-01), CONST(-5.5590820312E-01),
-        CONST(-3.8208007812E-01), CONST(-1.9384765625E-01),
-        CONST( 0.0000000000E+00), CONST( 1.9384765625E-01),
-        CONST( 3.8208007812E-01), CONST( 5.5590820312E-01),
-        CONST( 7.0776367188E-01), CONST( 8.3227539062E-01),
-        CONST( 9.2431640625E-01), CONST( 9.8095703125E-01),
-        CONST( 1.0000000000E+00), CONST( 9.8095703125E-01),
-        CONST( 9.2431640625E-01), CONST( 8.3251953125E-01),
-        CONST( 7.0776367188E-01), CONST( 5.5590820312E-01),
-        CONST( 3.8208007812E-01), CONST( 1.9458007812E-01),
+    int16_t z[24];
+    static const int16_t y[24] = {
+        CONST(-1.0000000000E+00), CONST(-9.0000000000E-01),
+        CONST(-8.0000000000E-01), CONST(-7.0000000000E-01),
+        CONST(-6.0000000000E-01), CONST(-5.0000000000E-01),
+        CONST(-4.0000000000E-01), CONST(-3.0000000000E-01),
+        CONST(-2.0000000000E-01), CONST(-1.0000000000E-01),
+        CONST( 0.0000000000E+00), CONST( 1.0000000000E-01),
+        CONST( 2.0000000000E-01), CONST( 3.0000000000E-01),
+        CONST( 4.0000000000E-01), CONST( 5.0000000000E-01),
+        CONST( 6.0000000000E-01), CONST( 7.0000000000E-01),
+        CONST( 8.0000000000E-01), CONST( 9.0000000000E-01),
         CONST( 1.0000000000E+00), CONST(-1.0000000000E+00),
+        CONST( 1.0000000000E+00), CONST( 0.0000000000E+00)
+    };
+    static const int16_t x[24] = {
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 1.0000000000E-01),
+        CONST( 1.0000000000E-01), CONST( 0.0000000000E+00),
         CONST( 0.0000000000E+00), CONST( 0.0000000000E+00)
     };
-    static const int16_t res[36] = {
-        CONST( 1.0000000000E+00), CONST(-9.3481445312E-01),
-        CONST(-8.6816406250E-01), CONST(-8.0761718750E-01),
-        CONST(-7.6000976562E-01), CONST(-7.2045898438E-01),
-        CONST(-6.9067382812E-01), CONST(-6.6699218750E-01),
-        CONST(-6.4868164062E-01), CONST(-6.3427734375E-01),
-        CONST(-6.2329101562E-01), CONST(-6.1474609375E-01),
-        CONST(-6.0839843750E-01), CONST(-6.0375976562E-01),
-        CONST(-6.0083007812E-01), CONST(-5.9912109375E-01),
-        CONST( 0.0000000000E+00), CONST( 4.0087890625E-01),
-        CONST( 3.9916992188E-01), CONST( 3.9624023438E-01),
-        CONST( 3.9160156250E-01), CONST( 3.8525390625E-01),
-        CONST( 3.7670898438E-01), CONST( 3.6572265625E-01),
-        CONST( 3.5131835938E-01), CONST( 3.3300781250E-01),
-        CONST( 3.0932617188E-01), CONST( 2.7954101562E-01),
-        CONST( 2.3999023438E-01), CONST( 1.9238281250E-01),
-        CONST( 1.3183593750E-01), CONST( 6.5185546875E-02),
-        CONST( 5.0000000000E-01), CONST(-5.0000000000E-01),
-        CONST( 0.0000000000E+00), CONST( 1.0000000000E+00)
+    static const int16_t res[24] = {
+        CONST(-4.6826171875E-01), CONST(-4.6484375000E-01),
+        CONST(-4.6044921875E-01), CONST(-4.5483398438E-01),
+        CONST(-4.4726562500E-01), CONST(-4.3701171875E-01),
+        CONST(-4.2187500000E-01), CONST(-3.9599609375E-01),
+        CONST(-3.5058593750E-01), CONST(-2.4414062500E-01),
+        CONST( 0.0000000000E+00), CONST( 2.5000000000E-01),
+        CONST( 3.5229492188E-01), CONST( 3.9697265625E-01),
+        CONST( 4.2236328125E-01), CONST( 4.3701171875E-01),
+        CONST( 4.4750976562E-01), CONST( 4.5507812500E-01),
+        CONST( 4.6044921875E-01), CONST( 4.6484375000E-01),
+        CONST( 4.6826171875E-01), CONST(-5.0000000000E-01),
+        CONST( 5.0000000000E-01), CONST( 0.0000000000E+00)
     };
     bool flOk = true;
 
     /* Call 'sc_atan2_s16' function */
-    for(n = 0; n < 36; n++) {
+    for(n = 0; n < 24; n++) {
         z[n] = sc_atan2_s16(y[n], x[n], RADIX);
     }
 
     /* Check the correctness of the result */
-    TEST_LIBS_CHECK_RES_REAL(z, res, 36, flOk);
+    TEST_LIBS_CHECK_RES_REAL(z, res, 24, flOk);
 
     return flOk;
 }

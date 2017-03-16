@@ -18,10 +18,23 @@ PLATFORMS_DIR = platforms
 # Utilites directory
 UTILS_DIR = utils
 
+# Platform name
+PLATFORM := $(firstword $(MAKECMDGOALS))
+
+# Build mode 
+BUILD_MODE := $(filter-out $(PLATFORM), $(MAKECMDGOALS))
+
 
 #==========================================================
 # Targets
 #==========================================================
+
+.PHONY: $(PLATFORM) help clean release debug all
+
+
+$(PLATFORM):
+	make --directory=$(PLATFORMS_DIR)/$(PLATFORM) $(BUILD_MODE)
+
 
 help:
 	@echo    Set platform name as make target
@@ -30,32 +43,6 @@ help:
 	@echo
 
 
-all:
-	make --directory=$(PLATFORMS_DIR)/portable release
-	make --directory=$(PLATFORMS_DIR)/portable debug	
-
-
 clean:
 	$(RM) -f build
- 	
 
-ifneq ($(MAKECMDGOALS), help)
-ifneq ($(MAKECMDGOALS), all)
-ifneq ($(MAKECMDGOALS), clean)
-ifneq ($(MAKECMDGOALS), astyle)
-ifneq ($(MAKECMDGOALS), release_code)
-
-PLATFORM := $(firstword $(MAKECMDGOALS))
-
-$(PLATFORM):
-	make --directory=$(PLATFORMS_DIR)/$(PLATFORM) \
-		$(filter-out $(PLATFORM), $(MAKECMDGOALS))
-
-endif
-endif
-endif
-endif
-endif
-
-
-.PHONY: $(PLATFORM) help

@@ -30,10 +30,10 @@ extern "C"
 
 /* Float to fixed point value conversion */
 #define CIMLIB_FIXED_S16(X, RADIX)                                             \
-    ((int16_t)((X) / (1 << (RADIX))))
+    ((int16_t)((X) * (1 << (RADIX))))
 
 #define CIMLIB_FIXED_S32(X, RADIX)                                             \
-    ((int32_t)((X) / (1 << (RADIX))))
+    ((int32_t)((X) * (1 << (RADIX))))
 
 
 /* Float to fixed point constants conversion.
@@ -69,6 +69,12 @@ extern "C"
 
 #define CIMLIB_CONST_C64(RE, IM, RADIX)                                        \
     {CIMLIB_CONST_S64(RE, RADIX), CIMLIB_CONST_S64(IM, RADIX)}
+
+
+/* Fixed to float conversion */
+#define CIMLIB_FLOAT(X, RADIX)  ((float)(X) / (float)(1 << RADIX))
+
+#define CIMLIB_DOUBLE(X, RADIX)  ((double)(X) / (double)(1 << RADIX))
 
 
 /* Get integer and fractional part */
